@@ -22,13 +22,15 @@ defmodule Themelook.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Coherence.Authentication.Session
   end
 
   scope "/", Themelook do
     pipe_through :browser
     coherence_routes
 
-    get "/", PageController, :index
+    get "/", ThemeController, :index
+    resources "/themes", ThemeController
   end
 
   scope "/", Themelook do
@@ -39,16 +41,16 @@ defmodule Themelook.Router do
   scope "/", Themelook do
     pipe_through :browser
     get "/", PageController, :index
-    # Add public routes below
   end
 
   scope "/", Themelook do
     pipe_through :protected
-    # Add protected routes below
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Themelook do
-  #   pipe_through :api
-  # end
+  scope "/api", Themelook, as: :api  do
+    pipe_through :api
+    scope "/v1", V1, as: :v1 do
+      resources "/themes", ThemeController
+    end
+  end
 end

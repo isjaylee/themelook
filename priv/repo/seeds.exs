@@ -10,7 +10,13 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-Themelook.Repo.delete_all Themelook.User
+alias Themelook.{Repo, User, Category}
 
-Themelook.User.changeset(%Themelook.User{}, %{name: "Admin", email: "admin@example.com", password: "password", password_confirmation: "password"})
-|> Themelook.Repo.insert!
+Repo.delete_all(User)
+
+User.changeset(%User{}, %{name: "Admin", email: "admin@example.com", password: "password", password_confirmation: "password"})
+|> Repo.insert!
+
+for category <- ["Restaurant", "Home Improvement", "Health & Beauty", "Blog", "Business", "Fashion", "Photography"] do
+    Repo.insert!(%Category{name: category})
+end

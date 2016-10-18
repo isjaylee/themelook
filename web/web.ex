@@ -23,6 +23,7 @@ defmodule Themelook.Web do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      require IEx
     end
   end
 
@@ -36,6 +37,7 @@ defmodule Themelook.Web do
 
       import Themelook.Router.Helpers
       import Themelook.Gettext
+      require IEx
     end
   end
 
