@@ -7,6 +7,11 @@
 
     function($http, $window, Theme, Category) {
       var vm = this;
+      vm.categories = [];
+      vm.themes = [];
+      vm.baseThemesList = []; // Original list of all themes. Way to reference the original list.
+
+      vm.filterByCategory = filterByCategory;
 
       getCategories();
       getThemes();
@@ -23,6 +28,7 @@
         Theme.getAll().then(
           function success(response) {
             vm.themes = response;
+            vm.baseThemesList = response; // Preserve list so when we're filtering, we can always reference original list.
 
             _.each(vm.themes, function(theme){
               if (theme.price === 0) {
@@ -33,6 +39,13 @@
             });
           }
         );
+      }
+
+      function filterByCategory(category) {
+        vm.themes = vm.baseThemesList;
+        vm.themes = _.filter(vm.themes, function(theme){
+          return _.some(theme.categories, {id: category.id});
+        });
       }
 
     }]);

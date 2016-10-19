@@ -13,8 +13,6 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
       add :description,  :string
       add :price,        :integer
       add :link,         :string
-
-      add :category_id, references(:categories)
       timestamps
     end
 
@@ -34,7 +32,6 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
     end
 
 
-    create index(:themes, [:category_id])
     create index(:reviews, [:theme_id])
     create index(:reviews, [:user_id])
   end

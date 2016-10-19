@@ -115,7 +115,7 @@
     <ul class="nav navbar-nav side-nav">
       <li><h3>Categories</h3></li>
       <li data-ng-repeat="category in vm.categories">
-        <a href="" data-ng-click="vm.showCategory()">{{category.name}}</a>
+        <a href="" data-ng-click="vm.filterByCategory(category)">{{category.name}}</a>
       </li>
     </ul>
   </div>

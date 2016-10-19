@@ -6,6 +6,7 @@ defmodule Themelook.Api.V1.ThemeController do
 
   def index(conn, _params) do
     themes = Repo.all(Theme)
+    |> Repo.preload(:categories)
     render(conn, "index.json", themes: themes)
   end
 
