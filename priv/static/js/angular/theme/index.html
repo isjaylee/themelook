@@ -11,13 +11,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-3 col-md-6" style="margin-bottom: 20px;" data-ng-repeat="theme in vm.themes">
         <figure>
           <img src="http://placehold.it/295x200" class="img-responsive">
-          <figcaption>Theme Name</figcaption>
-          <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper eu ipsum fringilla viverra.</figcaption>
+          <figcaption>{{theme.name}}</figcaption>
+          <figcaption>{{theme.description}}</figcaption>
           <figcaption>
-            <span class="pull-left">$59</span>
+            <span class="pull-left">{{theme.price}}</span>
             <span class="pull-right">1,201 views</span>
           </figcaption>
         </figure>

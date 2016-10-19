@@ -11,7 +11,7 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
       add :name,         :string
       add :publisher,    :string
       add :description,  :string
-      add :price,        :decimal
+      add :price,        :integer
 
       add :category_id, references(:categories)
       timestamps

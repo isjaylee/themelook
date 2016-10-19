@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/font-awesome.css") %>">
+    <script src="<%= static_path(@conn, "/js/lodash.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/angular.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/jquery.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/bootstrap.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/accounting.js") %>"></script>
   </head>
 
   <body id="wrapper">

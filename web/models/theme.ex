@@ -4,6 +4,9 @@ defmodule Themelook.Theme do
 
   schema "themes" do
     field :name, :string
+    field :publisher, :string
+    field :description, :string
+    field :price, :integer
 
     timestamps
   end
