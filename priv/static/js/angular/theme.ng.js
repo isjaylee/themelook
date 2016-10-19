@@ -25,7 +25,11 @@
             vm.themes = response;
 
             _.each(vm.themes, function(theme){
-              theme.price = accounting.formatMoney(theme.price);
+              if (theme.price === 0) {
+                theme.price = "Free";
+              } else {
+                theme.price = accounting.formatMoney(theme.price);
+              }
             });
           }
         );
