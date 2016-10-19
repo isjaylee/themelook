@@ -22,7 +22,7 @@ defmodule Themelook.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug Coherence.Authentication.Session
+    # plug Coherence.Authentication.Session
   end
 
   scope "/", Themelook do
@@ -47,10 +47,13 @@ defmodule Themelook.Router do
     pipe_through :protected
   end
 
-  scope "/api", Themelook, as: :api  do
+  scope "/", Themelook do
     pipe_through :api
-    scope "/v1", V1, as: :v1 do
-      resources "/themes", ThemeController
+    scope "/api", Api, as: :api  do
+      scope "/v1", V1, as: :v1 do
+        resources "/themes", ThemeController
+        get "/categories", CategoryController, :index
+      end
     end
   end
 end

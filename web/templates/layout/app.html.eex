@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/font-awesome.css") %>">
+    <script src="<%= static_path(@conn, "/js/angular.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/jquery.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/bootstrap.js") %>"></script>
   </head>
 
   <body id="wrapper">
-    <%= render Themelook.LayoutView, "navbar.html", conn: @conn %>
     <%= render @view_module, @view_template, assigns %>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
