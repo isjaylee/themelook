@@ -18,12 +18,23 @@ User.changeset(%User{}, %{name: "Admin", email: "admin@example.com", password: "
 |> Repo.insert!
 
 for category <- ["Restaurant", "Home Improvement", "Health & Beauty", "Blog", "Business", "Fashion", "Photography"] do
-    Repo.insert!(%Category{name: category})
+  Repo.insert!(%Category{name: category})
 end
 
 
 Repo.insert!(%Theme{name: "Divi", publisher: "Elegant Themes", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: 69})
+|> Repo.preload(:categories)
+|> Ecto.Changeset.change()
+|> Ecto.Changeset.put_assoc(:categories, [Repo.get(Category, 1), Repo.get(Category, 2)])
+|> Repo.update!
+
+
 Repo.insert!(%Theme{name: "Genesis", publisher: "Studio Press", description: "Vivamus ullamcorper eu ipsum fringilla viverra.", price: 169})
+|> Repo.preload(:categories)
+|> Ecto.Changeset.change()
+|> Ecto.Changeset.put_assoc(:categories, [Repo.get(Category, 4), Repo.get(Category, 5)])
+|> Repo.update!
+
 Repo.insert!(%Theme{name: "Thesis", publisher: "DIY Themes", description: "Pellentesque aliquet lorem neque, quis ullamcorper leo gravida quis.", price: 139})
 Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
 Repo.insert!(%Theme{name: "Gantry", publisher: "RocketTheme", description: "Gantry makes use of widgetized page layouts, where individual widgets can be dragged and dropped into place to populate the page layouts with content.", price: 0})

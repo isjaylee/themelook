@@ -12,7 +12,14 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
       add :publisher,    :string
       add :description,  :string
       add :price,        :integer
+      add :link,         :string
 
+      add :category_id, references(:categories)
+      timestamps
+    end
+
+    create table(:themes_categories) do
+      add :theme_id, references(:themes)
       add :category_id, references(:categories)
       timestamps
     end
