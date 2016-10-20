@@ -9,6 +9,7 @@ defmodule Themelook.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Coherence.Authentication.Session
+    plug Themelook.SharedMethods
   end
 
   pipeline :protected do
@@ -41,6 +42,7 @@ defmodule Themelook.Router do
   scope "/", Themelook do
     pipe_through :browser
     get "/", PageController, :index
+    resources "/categories", CategoryController, only: [:index, :show]
   end
 
   scope "/", Themelook do

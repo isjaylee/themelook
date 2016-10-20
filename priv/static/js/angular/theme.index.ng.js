@@ -9,7 +9,8 @@
       var vm = this;
       vm.categories = [];
       vm.themes = [];
-      vm.baseThemesList = []; // Original list of all themes. Way to reference the original list.
+      vm.originalThemesList = []; // Original list of all themes. Way to reference the original list.
+      vm.resetThemesList = resetThemesList;
 
       vm.filterByCategory = filterByCategory;
 
@@ -28,7 +29,7 @@
         Theme.getAll().then(
           function success(response) {
             vm.themes = response;
-            vm.baseThemesList = response; // Preserve list so when we're filtering, we can always reference original list.
+            vm.originalThemesList = response; // Preserve list so when we're filtering, we can always reference original list.
 
             _.each(vm.themes, function(theme){
               if (theme.price === 0) {
@@ -41,13 +42,16 @@
         );
       }
 
+      function resetThemesList() {
+        vm.themes = vm.originalThemesList;
+      }
+
       function filterByCategory(category) {
-        vm.themes = vm.baseThemesList;
+        vm.themes = vm.originalThemesList;
         vm.themes = _.filter(vm.themes, function(theme){
           return _.some(theme.categories, {id: category.id});
         });
       }
 
     }]);
-
 })();

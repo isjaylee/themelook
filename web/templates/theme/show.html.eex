@@ -1,0 +1,12 @@
+<script>
+  window.Themelook = window.Themelook || {};
+  window.Themelook.theme = '<%= Poison.encode!(@theme) |> raw %>';' %>'
+</script>
+<script src="<%= static_path(@conn, "/js/themelook.module.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/angular/models/category.model.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/angular/models/theme.model.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/angular/theme.show.ng.js") %>"></script>
+
+<div data-ng-app="themelook" data-ng-controller="ThemeShowController as vm">
+  <div data-ng-include="'<%= static_path(@conn, "/js/angular/theme/show.html") %>'"></div>
+</div>

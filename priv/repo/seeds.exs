@@ -37,4 +37,10 @@ Repo.insert!(%Theme{name: "Genesis", publisher: "Studio Press", description: "Vi
 
 Repo.insert!(%Theme{name: "Thesis", publisher: "DIY Themes", description: "Pellentesque aliquet lorem neque, quis ullamcorper leo gravida quis.", price: 139})
 Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
+Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
+Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
+Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
+Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
+Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
+Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
 Repo.insert!(%Theme{name: "Gantry", publisher: "RocketTheme", description: "Gantry makes use of widgetized page layouts, where individual widgets can be dragged and dropped into place to populate the page layouts with content.", price: 0})
