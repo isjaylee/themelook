@@ -30,10 +30,8 @@
   <div class="jumbotron">
     <div class="container">
       <ul class="list-inline">
-       <%= for category <- @conn.assigns.categories do %>
-          <li>
-            <%= link category.name, to: category_path(@conn, :show, category) %>
-          </li>
+        <%= for category <- @conn.assigns.categories do %>
+          <li><%= link category.name, to: category_path(@conn, :show, category) %></li>
         <% end  %>
       </ul>
     </div>

@@ -1,0 +1,15 @@
+<script>
+  window.Themelook = window.Themelook || {};
+  window.Themelook.themes = '<%= Poison.encode!(@themes) |> escape_javascript |> raw %>';
+  window.Themelook.category= '<%= Poison.encode!(@category) |> raw %>';
+  window.Themelook.categories = '<%= Poison.encode!(@categories) |> escape_javascript |> raw %>';
+</script>
+
+<script src="<%= static_path(@conn, "/js/themelook.module.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/angular/models/category.model.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/angular/models/theme.model.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/angular/category.show.ng.js") %>"></script>
+
+<div data-ng-app="themelook" data-ng-controller="CategoryShowController as vm">
+  <div data-ng-include="'<%= static_path(@conn, "/js/angular/category/show.html") %>'"></div>
+</div>
