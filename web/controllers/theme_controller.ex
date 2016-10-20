@@ -3,7 +3,7 @@ defmodule Themelook.ThemeController do
   alias Themelook.{Repo, Theme}
 
   def index(conn, _params) do
-    themes = Repo.all(Theme)
+    themes = Repo.all(from theme in Theme, limit: 10)
     render(conn, "index.html", themes: themes)
   end
 
