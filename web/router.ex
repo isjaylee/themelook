@@ -30,7 +30,7 @@ defmodule Themelook.Router do
     pipe_through :browser
     coherence_routes
 
-    get "/", ThemeController, :index
+    get "/", CategoryController, :index
     resources "/themes", ThemeController
   end
 

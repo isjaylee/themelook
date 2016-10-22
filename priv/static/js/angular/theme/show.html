@@ -1,25 +1,36 @@
-<div id="page-wrapper">
-  <div class="container-fluid">
-    <!-- Page Heading -->
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">
-          {{vm.theme.name}}
-        </h1>
-      </div>
+<div class="container-fluid" id="main">
+  <div class="row row-offcanvas row-offcanvas-left">
+    <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="nav-item"><a href="/" class="nav-link">All</a></li>
+        <li class="nav-item" data-ng-repeat="category in vm.categories"><a class="nav-link" href="/categories/{{category.id}}">{{category.name}}</a></li>
+      </ul>
     </div>
-    <div class="row">
-      <div class="col-lg-6 col-md-6">
-        <figure>
-          <img src="http://placehold.it/295x200" class="img-responsive">
-        </figure>
+    <!--/col-->
+    <div class="col-md-9 col-lg-10 main">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">{{vm.theme.name}}</li>
+      </ol>
+      <!--toggle sidebar button-->
+      <p class="hidden-md-up">
+        <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
+      </p>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <img class="card-img-top img-responsive" src="//placehold.it/740x300/bbb/fff" alt="Card image cap">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h3>{{vm.theme.price}}</h3>
+          <h4>{{vm.theme.name}}</h4>
+          <p>{{vm.theme.description}}</p>
+        </div>
       </div>
-      <div class="col-lg-6 col-md-6">
-        {{vm.theme.price}}
-        {{vm.theme.publisher}}
-        {{vm.theme.description}}
-      </div>
+      <!--/row-->
     </div>
+    <!--/main col-->
   </div>
-  <!-- /.container-fluid -->
 </div>

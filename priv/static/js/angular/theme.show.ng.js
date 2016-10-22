@@ -11,6 +11,7 @@
       vm.categories = [];
 
       getCategories();
+      formatPrice();
 
       function getCategories() {
         Category.getAll().then(
@@ -18,6 +19,14 @@
             vm.categories = response;
           }
         );
+      }
+
+      function formatPrice() {
+        if (vm.theme.price === 0) {
+        vm.theme.price = "Free";
+        } else {
+        vm.theme.price = accounting.formatMoney(vm.theme.price);
+        }
       }
 
   }]);
