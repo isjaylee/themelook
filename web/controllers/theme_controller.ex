@@ -15,10 +15,7 @@ defmodule Themelook.ThemeController do
   def search(conn, params) do
     categories = Repo.all(Category)
     themes =
-    t in Theme
-    |> from(where: fragment("name ilike ?", ^"%#{params["search"]["name"]}%"))
-    |> IO.inspect
-    |> Repo.all
+    Repo.all(from t in Theme, where: ilike(t.name, ^"%#{params["search"]["name"]}%"))
     |> Repo.preload(:categories)
     render(conn, "search.html", themes: themes, categories: categories)
   end
