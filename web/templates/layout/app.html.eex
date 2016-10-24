@@ -20,7 +20,7 @@
   </head>
 
   <body>
-    <%= render Themelook.LayoutView, "navigation.html", conn: @conn %>
+    <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user %>
     <%= render Themelook.LayoutView, "search_form.html", conn: @conn %>
     <%= render @view_module, @view_template, assigns %>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

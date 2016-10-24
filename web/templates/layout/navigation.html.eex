@@ -6,17 +6,20 @@
   <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
     <ul class="nav navbar-nav pull-right">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">Home</span></a>
+        <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#features">Features</a>
+        <a class="nav-link" href="#features">About</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#myAlert" data-toggle="collapse">Wow</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="" data-target="#myModal" data-toggle="modal">About</a>
-      </li>
+      <%= if @current_user do %>
+        <li class="nav-item">
+          <%= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link "Login", to: session_path(@conn, :new), class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

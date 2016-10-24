@@ -42,6 +42,7 @@ defmodule Themelook.Router do
   scope "/", Themelook do
     pipe_through :browser
     get "/", PageController, :index
+    get "/logout", ThemeController, :logout
     resources "/categories", CategoryController, only: [:index, :show]
     get "/search", ThemeController, :search
   end
