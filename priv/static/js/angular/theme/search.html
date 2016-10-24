@@ -9,8 +9,12 @@
     <!--/col-->
     <div class="col-md-9 col-lg-10 main">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">Latest Themes</li>
+        <div data-ng-if="vm.searchView">
+          <li class="breadcrumb-item">Search results <i class="fa fa-times" data-ng-click="vm.cancelSearch()"></i></li>
+        </div>
+        <div data-ng-if="!vm.searchView">
+          <li class="breadcrumb-item">Search results</li>
+        </div>
         <li class="pull-right">
           Sort by:
           <div class="btn-group" uib-dropdown is-open="status.isopen">

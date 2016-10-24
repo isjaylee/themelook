@@ -8,7 +8,7 @@
       $log.info('{Model} Defining the Theme model.');
 
       return {
-        getAll:  getAll
+        getAll: getAll
       };
 
       /*----------------------------------------------------------------------------------------------

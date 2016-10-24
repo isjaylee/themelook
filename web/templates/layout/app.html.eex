@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/font-awesome.css") %>">
     <script src="<%= static_path(@conn, "/js/lodash.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/angular.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/angular/libraries/ui-bootstrap.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/jquery.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/bootstrap.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/accounting.js") %>"></script>
@@ -20,6 +21,7 @@
 
   <body>
     <%= render Themelook.LayoutView, "navigation.html", conn: @conn %>
+    <%= render Themelook.LayoutView, "search_form.html", conn: @conn %>
     <%= render @view_module, @view_template, assigns %>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>

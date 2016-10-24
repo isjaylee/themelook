@@ -1,7 +1,7 @@
 defmodule Themelook.Theme do
   use Themelook.Web, :model
   alias Themelook.{Category, ThemesCategories}
-  @derive {Poison.Encoder, only: [:id, :name, :publisher, :description, :price]}
+  @derive {Poison.Encoder, only: [:id, :name, :publisher, :description, :price, :updated_at, :inserted_at]}
 
   schema "themes" do
     field :name, :string

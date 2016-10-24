@@ -5,6 +5,10 @@ defmodule Themelook.Api.V1.ThemeView do
     render_many(themes, Themelook.Api.V1.ThemeView, "theme.json")
   end
 
+  def render("search.json", %{themes: themes}) do
+    render_many(themes, Themelook.Api.V1.ThemeView, "theme.json")
+  end
+
   def render("theme.json", %{theme: theme}) do
     %{
       id: theme.id,

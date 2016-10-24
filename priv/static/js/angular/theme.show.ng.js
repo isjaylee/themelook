@@ -9,6 +9,7 @@
       var vm = this;
       vm.theme = JSON.parse($window.Themelook.theme);
       vm.categories = [];
+      vm.searchThemes = searchThemes;
 
       getCategories();
       formatPrice();
@@ -28,6 +29,14 @@
         vm.theme.price = accounting.formatMoney(vm.theme.price);
         }
       }
+
+      function searchThemes(params) {
+        Theme.search(params).then(
+          function success(response) {
+          }
+        );
+      }
+
 
   }]);
 })();

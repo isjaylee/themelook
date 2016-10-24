@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('themelook').controller('CategoryIndexController', [
+  angular.module('themelook').controller('ThemeSearchController', [
     '$http', '$window',
     'Theme', 'Category',
 
