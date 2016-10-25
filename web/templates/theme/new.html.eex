@@ -1,0 +1,38 @@
+<div class="col-lg-10 offset-lg-1">
+  <div class="page-header">
+    <h1>Add a Theme</h1>
+  </div>
+  <%= form_for @changeset, theme_path(@conn, :create), fn f -> %>
+    <div class="form-group">
+      <%= label f, :name %>
+      <%= text_input f, :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-4">
+          <%= label f, :publisher %>
+          <%= text_input f, :publisher, class: "form-control" %>
+        </div>
+        <div class="col-lg-4">
+          <%= label f, :link %>
+          <%= text_input f, :link, class: "form-control" %>
+        </div>
+        <div class="col-lg-4">
+          <%= label f, :price %>
+          <%= text_input f, :price, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label f, :description %>
+      <%= textarea f, :description, class: "form-control", rows: "10" %>
+    </div>
+    <div class="form-group">
+      <%= label f, :categories %>
+      <%= inputs_for f, :categories, fn e -> %>
+        <%= multiple_select(e, :categories, @categories, class: "form-control") %>
+      <% end %>
+    </div>
+    <%= submit "Create", class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -4,7 +4,7 @@ defmodule Themelook.CategoryController do
 
   def index(conn, _params) do
     categories = Repo.all(Category)
-    themes = Repo.all(Theme)
+    themes = Repo.all(from t in Theme, order_by: [desc: t.inserted_at])
     render(conn, "index.html",
       themes: themes,
       categories: categories

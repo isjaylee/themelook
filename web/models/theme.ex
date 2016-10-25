@@ -15,7 +15,7 @@ defmodule Themelook.Theme do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name])
+    |> cast(params, [:name, :publisher, :description, :price])
     |> validate_required([:name])
   end
 

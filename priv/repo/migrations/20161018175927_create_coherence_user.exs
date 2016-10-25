@@ -4,6 +4,7 @@ defmodule Themelook.Repo.Migrations.CreateCoherenceUser do
     create table(:users) do
       add :name, :string
       add :email, :string
+      add :role, :string, default: "User"
       # authenticatable
       add :password_hash, :string
       # recoverable
@@ -20,7 +21,7 @@ defmodule Themelook.Repo.Migrations.CreateCoherenceUser do
       add :last_sign_in_ip, :string
       # unlockable_with_token
       add :unlock_token, :string
-      
+
       timestamps()
     end
     create unique_index(:users, [:email])

@@ -14,7 +14,10 @@ alias Themelook.{Repo, User, Category, Theme}
 
 Repo.delete_all(User)
 
-User.changeset(%User{}, %{name: "Admin", email: "admin@example.com", password: "password", password_confirmation: "password"})
+User.changeset(%User{}, %{name: "Admin", email: "admin@example.com", password: "password", password_confirmation: "password", role: "Admin"})
+|> Repo.insert!
+
+User.changeset(%User{}, %{name: "Bob", email: "bob@example.com", password: "password", password_confirmation: "password"})
 |> Repo.insert!
 
 for category <- ["Restaurant", "Home Improvement", "Health & Beauty", "Blog", "Business", "Fashion", "Photography"] do

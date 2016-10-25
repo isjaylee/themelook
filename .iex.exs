@@ -1,1 +1,1 @@
-alias Themelook.{Repo, Theme, Category}
+alias Themelook.{Repo, Theme, Category, User}

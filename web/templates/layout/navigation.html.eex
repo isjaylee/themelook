@@ -2,7 +2,8 @@
   <button class="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
   ☰
   </button>
-  <a class="navbar-brand" href="#">Navbar</a>
+  <%= link "Themelook", to: category_path(@conn, :index), class: "navbar-brand" %>
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
   <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
     <ul class="nav navbar-nav pull-right">
       <li class="nav-item active">
@@ -11,6 +12,11 @@
       <li class="nav-item">
         <a class="nav-link" href="#features">About</a>
       </li>
+      <%= if @current_user && @current_user.role == "Admin" do %>
+        <li class="nav-item">
+          <%= link "Add a Theme", to: theme_path(@conn, :new), class: "nav-link" %>
+        </li>
+      <% end %>
       <%= if @current_user do %>
         <li class="nav-item">
           <%= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>
