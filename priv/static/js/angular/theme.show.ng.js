@@ -8,19 +8,11 @@
     function($http, $window, Theme, Category){
       var vm = this;
       vm.theme = JSON.parse($window.Themelook.theme);
-      vm.categories = [];
+      vm.categories = JSON.parse($window.Themelook.categories);
       vm.searchThemes = searchThemes;
+      vm.listCategories = listCategories;
 
-      getCategories();
       formatPrice();
-
-      function getCategories() {
-        Category.getAll().then(
-          function success(response) {
-            vm.categories = response;
-          }
-        );
-      }
 
       function formatPrice() {
         if (vm.theme.price === 0) {
@@ -35,6 +27,14 @@
           function success(response) {
           }
         );
+      }
+
+      function listCategories(categories) {
+        var categoryList = [];
+        _.each(categories, function(category){
+          if (!_.isEmpty(category)) { categoryList.push(category.name) }
+        });
+        return categoryList.join(', ');
       }
 
 

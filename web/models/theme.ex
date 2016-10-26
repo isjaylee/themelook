@@ -1,7 +1,7 @@
 defmodule Themelook.Theme do
   use Themelook.Web, :model
   alias Themelook.{Category, ThemesCategories}
-  @derive {Poison.Encoder, only: [:id, :name, :publisher, :description, :price, :updated_at, :inserted_at]}
+  @derive {Poison.Encoder, only: [:id, :name, :publisher, :description, :price, :updated_at, :inserted_at, :categories]}
 
   schema "themes" do
     field :name, :string
@@ -16,7 +16,7 @@ defmodule Themelook.Theme do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :publisher, :description, :price])
-    |> validate_required([:name])
+    |> validate_required([:name, :publisher])
   end
 
 end
