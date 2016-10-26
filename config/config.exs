@@ -39,3 +39,8 @@ config :coherence, Themelook.Coherence.Mailer,
   adapter: Swoosh.Adapters.Sendgrid,
   api_key: "your api key here"
 # %% End Coherence Configuration %%
+
+config :ex_cloudinary,
+  api_key: "656544924167844",
+  api_secret: "DrgmAeKGD_SljVBTC_aljs7GEH4",
+  cloud_name: "themelook"

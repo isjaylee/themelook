@@ -13,6 +13,7 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
       add :description,  :string
       add :price,        :integer
       add :link,         :string
+      add :image,        :string
       timestamps
     end
 

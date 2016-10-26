@@ -19,7 +19,7 @@ defmodule Themelook.Mixfile do
   def application do
     [mod: {Themelook, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :coherence]]
+                    :phoenix_ecto, :postgrex, :coherence, :ex_cloudinary]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,8 +40,9 @@ defmodule Themelook.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:coherence, "~> 0.3.0"},
-      {:httpoison, "~> 0.9.0"},
-      {:poison, "~> 2.2"}
+      {:httpoison, "~> 0.8.0"},
+      {:poison, "~> 2.2"},
+      {:ex_cloudinary, "~> 0.2.2"}
     ]
   end
 

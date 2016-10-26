@@ -106,6 +106,16 @@ body.modal-open {
     transform: rotate(-44deg);
 }
 
+.theme-index-page.card img {
+  width: 270px;
+  height: 270px;
+}
+
+.theme-show-page.card img {
+  width: 570px;
+  height: 540px;
+}
+
 .jumbotron {
   padding-top: 20px;
   padding-bottom: 10px;

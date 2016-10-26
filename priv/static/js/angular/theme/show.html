@@ -9,7 +9,7 @@
     <!--/col-->
     <div class="col-md-9 col-lg-10 main">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item active">{{vm.theme.name}}</li>
       </ol>
       <!--toggle sidebar button-->
@@ -19,8 +19,8 @@
 
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
-            <img class="card-img-top img-responsive" src="//placehold.it/740x300/bbb/fff" alt="Card image cap">
+          <div class="theme-show-page card">
+            <img class="card-img-top img-responsive" data-ng-src="{{vm.theme.image}}" alt="{{vm.theme.name}} theme image">
           </div>
         </div>
         <div class="col-lg-6">

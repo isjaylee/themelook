@@ -9,7 +9,7 @@
     <!--/col-->
     <div class="col-md-9 col-lg-10 main">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item active">Latest Themes</li>
         <li class="pull-right">
           Sort by:
@@ -33,8 +33,10 @@
 
       <div class="row">
         <div class="col-lg-3 col-md-4" data-ng-repeat="theme in vm.themes">
-          <div class="card">
-            <img class="card-img-top img-responsive" src="//placehold.it/740x180/bbb/fff?text=..." alt="Card image cap">
+          <div class="theme-index-page card">
+            <a href="/themes/{{theme.id}}">
+              <img class="card-img-top img-responsive" data-ng-src="{{theme.image}}" alt="{{vm.theme.name}} theme image">
+            </a>
             <div class="card-block">
               <h4 class="card-title"><a href="/themes/{{theme.id}}">{{theme.name}}</a></h4>
               <p class="card-text pull-left">{{theme.publisher}}</p>

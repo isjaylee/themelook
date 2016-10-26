@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-sm-4 col-lg-4 col-md-4" data-ng-repeat="theme in vm.themes">
           <div class="thumbnail">
-            <img src="http://placehold.it/295x200" alt="">
+            <img src="{{theme.image}}" alt="{{theme.name}} theme image">
             <div class="caption">
               <p class="theme-name">
                 <a href="/themes/{{theme.id}}">{{theme.name}}</a>
