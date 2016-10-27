@@ -44,17 +44,17 @@ defmodule Themelook.Coherence.RegistrationController do
   this option is enabled.
   """
   def create(conn, %{"registration" => registration_params} = params) do
-    user_schema = Config.user_schema
-    cs = Helpers.changeset(:registration, user_schema, user_schema.__struct__, registration_params)
-    case Config.repo.insert(cs) do
-      {:ok, user} ->
-        conn
-        |> send_confirmation(user, user_schema)
-        |> redirect_to(:registration_create, params)
-      {:error, changeset} ->
-        conn
-        |> render("new.html", changeset: changeset)
-    end
+    # user_schema = Config.user_schema
+    # cs = Helpers.changeset(:registration, user_schema, user_schema.__struct__, registration_params)
+    # case Config.repo.insert(cs) do
+    #   {:ok, user} ->
+    #     conn
+    #     |> send_confirmation(user, user_schema)
+    #     |> redirect_to(:registration_create, params)
+    #   {:error, changeset} ->
+    #     conn
+    #     |> render("new.html", changeset: changeset)
+    # end
   end
 
   @doc """
