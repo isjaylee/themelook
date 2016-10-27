@@ -1,7 +1,7 @@
 defmodule Themelook.ThemeController do
   use Themelook.Web, :controller
-  alias Themelook.{Repo, Theme, Category, Coherence}
-  # Coherence.Authentication.Session, protected: true when action != :index
+  alias Themelook.{Repo, Theme, Category}
+  plug Coherence.Authentication.Session, [protected: true] when action in [:new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do
     themes = Repo.all(from t in Theme, limit: 10)
