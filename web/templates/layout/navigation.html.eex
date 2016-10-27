@@ -14,7 +14,7 @@
       </li>
       <%= if @current_user && @current_user.role == "Admin" do %>
         <li class="nav-item">
-          <%= link "Add a Theme", to: theme_path(@conn, :new), class: "nav-link" %>
+          <%= link "Manage Themes", to: theme_path(@conn, :index), class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>

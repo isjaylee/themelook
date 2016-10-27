@@ -1,9 +1,9 @@
 <div class="col-lg-10 offset-lg-1">
   <div class="page-header">
-    <h1>Add a theme</h1>
+    <h1>Edit <%= @theme.name %></h1>
   </div>
   <%= render "form.html", changeset: @changeset,
-                          action: theme_path(@conn, :create),
+                          action: theme_path(@conn, :update, @theme),
+                          theme: @theme,
                           categories: @categories %>
 </div>
-
