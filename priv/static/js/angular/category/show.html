@@ -9,8 +9,22 @@
     <!--/col-->
     <div class="col-md-9 col-lg-10 main">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item active">{{vm.category.name}}</li>
+        <li class="pull-right">
+          Sort by:
+          <div class="btn-group" uib-dropdown is-open="status.isopen">
+            <button id="single-button" type="button" class="btn btn-sm" uib-dropdown-toggle ng-disabled="disabled">
+              {{vm.sortBy}}<span class="caret"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Price - High to Low')">Price - High to Low</a>
+              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Price - Low to High')">Price - Low to High</a>
+              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Newest')">Newest</a>
+              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Oldest')">Oldest</a>
+            </div>
+          </div>
+        </li>
       </ol>
       <!--toggle sidebar button-->
       <p class="hidden-md-up">
@@ -19,12 +33,14 @@
 
       <div class="row">
         <div class="col-lg-3 col-md-4" data-ng-repeat="theme in vm.themes">
-          <div class="card">
-            <img class="card-img-top img-responsive" src="//placehold.it/740x180/bbb/fff?text=..." alt="Card image cap">
+          <div class="theme-index-page card">
+            <a href="/themes/{{theme.id}}">
+              <img class="card-img-top img-responsive" data-ng-src="{{theme.image}}" alt="{{vm.theme.name}} theme image">
+            </a>
             <div class="card-block">
               <h4 class="card-title"><a href="/themes/{{theme.id}}">{{theme.name}}</a></h4>
               <p class="card-text pull-left">{{theme.publisher}}</p>
-              <p class="card-text pull-right">{{theme.price}}</p>
+              <p class="card-text pull-right">{{vm.formatPrice(theme.price)}}</p>
             </div>
           </div>
         </div>

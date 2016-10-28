@@ -29,9 +29,6 @@ defmodule Themelook.Router do
   scope "/", Themelook do
     pipe_through :browser
     coherence_routes
-
-    get "/", CategoryController, :index
-    resources "/themes", ThemeController
   end
 
   scope "/", Themelook do
@@ -41,10 +38,12 @@ defmodule Themelook.Router do
 
   scope "/", Themelook do
     pipe_through :browser
-    get "/", PageController, :index
+    get "/", CategoryController, :index
+    get "/about", PageController, :about
     get "/logout", ThemeController, :logout
-    resources "/categories", CategoryController, only: [:index, :show]
     get "/search", ThemeController, :search
+    resources "/themes", ThemeController
+    resources "/categories", CategoryController, only: [:index, :show]
   end
 
   scope "/", Themelook do

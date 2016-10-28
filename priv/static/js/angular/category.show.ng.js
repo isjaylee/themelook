@@ -10,18 +10,41 @@
       vm.themes = JSON.parse($window.Themelook.themes);
       vm.category = JSON.parse($window.Themelook.category);
       vm.categories = JSON.parse($window.Themelook.categories);
+      vm.formatPrice = formatPrice;
+      vm.sortThemes = sortThemes;
+      vm.sortBy = 'Newest';
 
+      function formatPrice(price) {
+        if (price === 0) {
+          return 'Free';
+        } else {
+          return accounting.formatMoney(price);
+        }
+      }
 
-      formatPrice();
+      function sortThemes(sort){
+        vm.sortBy = sort;
+        switch(sort) {
+        case 'Price - High to Low':
+          vm.themes = _.sortBy(vm.themes, function(theme) { return -theme.price } );
+          break;
+        case 'Price - Low to High':
+          vm.themes = _.sortBy(vm.themes, function(theme) { return theme.price } );
+          break;
+        case 'Newest':
+          vm.themes = _.sortBy(vm.themes, function(theme) {
+            var date = new Date(theme.inserted_at);
+            return -date;
+          });
+          break;
+        case 'Oldest':
+          vm.themes = _.sortBy(vm.themes, function(theme) {
+            var date = new Date(theme.inserted_at);
+            return date;
+          });
 
-      function formatPrice() {
-        _.each(vm.themes, function(theme){
-          if (theme.price === 0) {
-            theme.price = "Free";
-          } else {
-            theme.price = accounting.formatMoney(theme.price);
-          }
-        });
+          break;
+        }
       }
 
     }]);

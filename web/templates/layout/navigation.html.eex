@@ -10,7 +10,7 @@
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#features">About</a>
+          <%= link "About", to: page_path(@conn, :about), class: "nav-link" %>
       </li>
       <%= if @current_user && @current_user.role == "Admin" do %>
         <li class="nav-item">
