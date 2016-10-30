@@ -1,4 +1,7 @@
 <div class="col-md-3 col-sm-4">
+  <div class="sub-title">
+    <p>Browse by</p>
+  </div>
   <div class="product-single-sidebar">
     <div class="sidebar-title">
       <p>CATEGORY</p>
@@ -6,6 +9,7 @@
     <div class="sidebar-menu">
       <div id="categorymenu">
         <ul>
+          <li class="has-sub"><a href="/">All</a></li>
           <%= for category <- @categories do %>
             <li class="has-sub">
               <%= link category.name, to: category_path(@conn, :show, category) %>
@@ -17,44 +21,14 @@
   </div>
   <div class="product-single-sidebar">
     <div class="sidebar-title">
-      <p>SHOP BY</p>
-    </div>
-    <div class="sub-title">
-      <p>MANUFACTURE</p>
+      <p>Framework</p>
     </div>
     <div class="sidebar-menu">
       <ul>
-        <li><a href="#">Hermes <span>(20)</span></a></li>
-        <li><a href="#">Delce &amp; Gabbana <span>(16)</span></a></li>
-        <li><a href="#">Louis Voitton <span>(18)</span></a></li>
-        <li><a href="#">Versace <span>(20)</span></a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="product-single-sidebar filter">
-    <div class="sidebar-title">
-      <p>SHOP BY</p>
-    </div>
-    <div class="sub-title">
-      <p>color</p>
-    </div>
-    <div class="sidebar-menu">
-      <ul>
-        <li><a href="#">Hermes <span>(20)</span></a></li>
-        <li><a href="#">Delce &amp; Gabbana <span>(16)</span></a></li>
-        <li><a href="#">Louis Voitton <span>(18)</span></a></li>
-        <li><a href="#">Versace <span>(20)</span></a></li>
-      </ul>
-    </div>
-    <div class="sub-title">
-      <p>size</p>
-    </div>
-    <div class="sidebar-menu">
-      <ul>
-        <li><a href="#">Hermes <span>(20)</span></a></li>
-        <li><a href="#">Delce &amp; Gabbana <span>(16)</span></a></li>
-        <li><a href="#">Louis Voitton <span>(18)</span></a></li>
-        <li><a href="#">Versace <span>(20)</span></a></li>
+        <li><a href="#">Wordpress<span>(20)</span></a></li>
+        <li><a href="#">HTML <span>(16)</span></a></li>
+        <li><a href="#">Shopify <span>(18)</span></a></li>
+        <li><a href="#">Opencart <span>(20)</span></a></li>
       </ul>
     </div>
   </div>

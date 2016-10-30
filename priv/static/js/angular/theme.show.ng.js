@@ -8,17 +8,15 @@
     function($http, $window, Theme, Category){
       var vm = this;
       vm.theme = JSON.parse($window.Themelook.theme);
-      vm.categories = JSON.parse($window.Themelook.categories);
+      vm.formatPrice = formatPrice;
       vm.searchThemes = searchThemes;
       vm.listCategories = listCategories;
 
-      formatPrice();
-
-      function formatPrice() {
-        if (vm.theme.price === 0) {
-        vm.theme.price = "Free";
+      function formatPrice(price) {
+        if (price === 0) {
+          return 'Free';
         } else {
-        vm.theme.price = accounting.formatMoney(vm.theme.price);
+          return accounting.formatMoney(price);
         }
       }
 

@@ -1286,6 +1286,10 @@ p.special-price {
     width: 100%;
 }
 
+.s-product-img img:hover {
+  opacity: 0.8;
+}
+
 .img-overlay {
     background: none repeat scroll 0 0 #000;
     height: 100%;
@@ -2772,7 +2776,6 @@ bleu_slider1_slide_h2 h2 {
 
 .sub-title {
     margin-bottom: 5px;
-    margin-top: 10px;
 }
 
 .sub-title p {
@@ -3282,7 +3285,7 @@ bleu_slider1_slide_h2 h2 {
 }
 
 .details .product-menu {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .details .product-list.tab-content .tab-pane p {

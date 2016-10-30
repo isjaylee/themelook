@@ -5,13 +5,7 @@
       <div class="col-md-12">
         <div class="toolbar">
           <div class="view-mode">
-            <p>View style :</p>
-            <a class="active" href="shop-full-width.html">
-            <i class="fa fa-th-large"></i>
-            </a> 
-            <a href="shop-list.html">
-            <i class="fa fa-th-list"></i>
-            </a>
+            <p>HOME / ALL</p>
           </div>
           <div class="result-short pull-right">
             <div class="result-count">
@@ -37,13 +31,13 @@
         <div class="single-item">
           <div class="single-product fix">
             <div class="s-product-img">
-              <a href="#"><img data-ng-src="{{theme.image}}" alt="{{vm.theme.name}} theme image"></a>
-              <div class="img-overlay"></div>
+              <a href="/themes/{{theme.id}}"><img data-ng-src="{{theme.image}}" alt="{{vm.theme.name}} theme image"></a>
             </div>
             <!-- Single product Title-->
             <div class="product-title">
               <a href="#">{{theme.name}}</a>
             </div>
+            <small>{{theme.publisher}}</small>
             <!-- Product price -->
             <div class="price-box">
               <p class="special-price"><span class="price">{{vm.formatPrice(theme.price)}}</span></p>
@@ -51,12 +45,10 @@
             <!--/ Product price -->
           </div>
         </div>
-        <!-- Single Item -->           
+        <!-- Single Item -->
       </div>
     </div>
-    <!--/ All product-->    
-    <!--Pagination -->
-    <div class="row">
+    <!--/ All product--> <!--Pagination --> <div class="row">
       <div class="col-sm-12">
         <div class="pagination-area">
           <div class="paginations">

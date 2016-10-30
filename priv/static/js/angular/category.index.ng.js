@@ -8,7 +8,6 @@
     function($http, $window, Theme, Category){
       var vm = this;
       vm.themes = JSON.parse($window.Themelook.themes);
-      vm.categories = JSON.parse($window.Themelook.categories);
       vm.formatPrice = formatPrice;
       vm.sortThemes = sortThemes;
       vm.sortBy = 'Newest';
