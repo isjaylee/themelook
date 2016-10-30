@@ -2551,7 +2551,6 @@ bleu_slider1_slide_h2 h2 {
 .toolbar {
     border-bottom: 1px solid #e5e5e5;
     margin-bottom: 36px;
-    overflow: hidden;
     padding: 30px 0;
 }
 
@@ -2587,7 +2586,7 @@ bleu_slider1_slide_h2 h2 {
     width: 34%;
 }
 
-.result-short form {
+.result-short .dropdown {
     float: right;
 }
 
@@ -4325,3 +4324,5 @@ h4.form-site-title {
   margin-top: -25px;
   top: 50%;
 }
+.dropdown li{position:relative;}
+ul.dropdown-menu ul { position:absolute;left:0;top:100%}

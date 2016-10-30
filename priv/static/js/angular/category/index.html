@@ -11,16 +11,18 @@
             <div class="result-count">
               <p>Showing <span>1-12</span> of <span> 120 </span> results</p>
             </div>
-            <form method="POST">
-              <div class="orderby-wrapper">
-                <select>
-                  <option>sort by newest</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average</option>
-                  <option>Sort by newness</option>
-                </select>
-              </div>
-            </form>
+            <div class="dropdown">
+              <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{vm.sortBy}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                <li><a href="" data-ng-click="vm.sortThemes('Price - High to Low')">Price - High to Low</a></li>
+                <li><a href="" data-ng-click="vm.sortThemes('Price - Low to High')">Price - Low to High</a></li>
+                <li><a href="" data-ng-click="vm.sortThemes('Newest')">Newest</a></li>
+                <li><a href="" data-ng-click="vm.sortThemes('Oldest')">Oldest</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
