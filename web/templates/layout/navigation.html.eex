@@ -7,7 +7,7 @@
           <!-- Logo Start -->
           <div class="col-md-3 col-sm-12">
             <div class="site-logo">
-              <a href="index.html"><img src="img/logo/logo.png" alt=""></a>
+              <h1><%= link "Themelook", to: category_path(@conn, :index) %></h1>
             </div>
           </div>
           <!-- Logo Start -->
@@ -17,9 +17,9 @@
                 <ul id="nav" class="nav navbar-nav">
                   <li><%= link "Home", to: category_path(@conn, :index) %></li>
                   <li class="active megamenu-list dropdown-active">
-                    <a href="index.html">Categories <i class="fa fa-angle-down"></i></a>
+                    <a href="/">Categories <i class="fa fa-angle-down"></i></a>
                     <ul class="sub-menu">
-                      <%= for category <- @categories do %>
+                      <%= for category <- @home_categories do %>
                         <li><%= link category.name, to: category_path(@conn, :show, category) %></li>
                       <% end %>
                     </ul>
@@ -80,6 +80,14 @@
                     </div>
                   </li>
                   <li><%= link "About", to: page_path(@conn, :about) %></li>
+                  <%= if @current_user && @current_user.role == "Admin" do %>
+                    <li>
+                      <%= link "Manage Themes", to: theme_path(@conn, :index), class: "nav-link" %>
+                    </li>
+                    <li>
+                      <%= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>
+                    </li>
+                  <% end %>
                 </ul>
               </div>
             </div>

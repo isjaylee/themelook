@@ -7,7 +7,8 @@ defmodule Themelook.Application do
   end
 
   def call(conn, repo) do
-    categories = Repo.all(Category)
-    assign(conn, :categories, categories)
+    home_categories = Repo.all(Category)
+    assign(conn, :home_categories, home_categories)
   end
+
 end

@@ -30,7 +30,7 @@
   <div class="form-group">
     <%= label f, :categories %>
     <%= inputs_for f, :categories, fn e -> %>
-      <%= multiple_select(e, :categories, @categories, class: "form-control") %>
+      <%= multiple_select(e, :categories, @categories, class: "form-control", size: "10") %>
     <% end %>
   </div>
   <%= submit "Create", class: "btn btn-primary" %>

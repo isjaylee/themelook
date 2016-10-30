@@ -10,7 +10,7 @@
       <div id="categorymenu">
         <ul>
           <li class="has-sub"><a href="/">All</a></li>
-          <%= for category <- @categories do %>
+          <%= for category <- @home_categories do %>
             <li class="has-sub">
               <%= link category.name, to: category_path(@conn, :show, category) %>
             </li>

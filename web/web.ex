@@ -54,6 +54,7 @@ defmodule Themelook.Web do
       import Themelook.Router.Helpers
       import Themelook.ErrorHelpers
       import Themelook.Gettext
+      import Themelook.GenericHelpers
       require IEx
     end
   end

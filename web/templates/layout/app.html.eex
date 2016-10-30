@@ -19,11 +19,11 @@
     <script src="<%= static_path(@conn, "/js/accounting.js") %>"></script>
   </head>
   <body class="gird-2">
-    <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user, categories: @categories %>
+    <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user, home_categories: @home_categories %>
     <div class="main-content-section">
       <div class="container">
         <div class="row">
-          <%= if @conn.request_path != "/about", do: render Themelook.LayoutView, "sidebar.html", conn: @conn, categories: @categories %>
+          <%= if !show_sidebar(@conn), do: render Themelook.LayoutView, "sidebar.html", conn: @conn, home_categories: @home_categories %>
           <%= render @view_module, @view_template, assigns %>
         </div>
       </div>
