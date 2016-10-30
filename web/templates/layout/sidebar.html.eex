@@ -6,9 +6,11 @@
     <div class="sidebar-menu">
       <div id="categorymenu">
         <ul>
-          <li class="has-sub">
-            <a href="#">Women</a>
-          </li>
+          <%= for category <- @categories do %>
+            <li class="has-sub">
+              <%= link category.name, to: category_path(@conn, :show, category) %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>

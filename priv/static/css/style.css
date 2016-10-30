@@ -1092,7 +1092,7 @@ p.old-price {
 
 p.special-price {
     display: inline-block;
-    margin: 3px 0 8px 6px;
+    margin: 3px 0 8px 0;
 }
 
 .old-price .price {
@@ -4302,8 +4302,8 @@ h4.form-site-title {
 }
 
 #categorymenu ul > li.has-sub > a:after {
-    content: "\e623";
-    font-family: Pe-icon-7-stroke;
+    content: "\f105";
+    font-family: FontAwesome;
     right: 8px;
     position: absolute;
     top: 12px;
@@ -4311,8 +4311,8 @@ h4.form-site-title {
 }
 
 #categorymenu ul > li.has-sub.open > a:after {
-    content: "\e644";
-    font-family: Pe-icon-7-stroke;
+    content: "\f105";
+    font-family: FontAwesome;
     right: 8px;
     position: absolute;
     top: 12px;

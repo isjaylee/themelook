@@ -15,23 +15,20 @@
             <div class="mainmenu">
               <div class="navbar-collapse collapse">
                 <ul id="nav" class="nav navbar-nav">
-                  <li><a href="shop.html">Home</a></li>
+                  <li><%= link "Home", to: category_path(@conn, :index) %></li>
                   <li class="active megamenu-list dropdown-active">
                     <a href="index.html">Categories <i class="fa fa-angle-down"></i></a>
                     <ul class="sub-menu">
                       <%= for category <- @categories do %>
-                        <li><a href="index-2.html"><%= category.name %></a></li>
+                        <li><%= link category.name, to: category_path(@conn, :show, category) %></li>
                       <% end %>
                     </ul>
                   </li>
                   <li class="megamenu-list">
                     <a href="shop.html">Frameworks <i class="fa fa-angle-down"></i></a>
                     <div class="mega-menu">
-                      <div class="mega-menu-image">
-                        <a href="#"><img src="img/menu/megamenu-img.jpg" alt=""></a>
-                      </div>
                       <div class="megamenu-single-item">
-                        <h5>lookbook</h5>
+                        <h5>Prestashop</h5>
                         <ul>
                           <li><a href="#">necklace</a></li>
                           <li><a href="#">chunky short striped</a></li>
@@ -41,7 +38,7 @@
                         </ul>
                       </div>
                       <div class="megamenu-single-item">
-                        <h5>Accessories</h5>
+                        <h5>Shopify</h5>
                         <ul>
                           <li><a href="#">casual shoes</a></li>
                           <li><a href="#">bags</a></li>
@@ -51,7 +48,7 @@
                         </ul>
                       </div>
                       <div class="megamenu-single-item">
-                        <h5>Men</h5>
+                        <h5>OpenCart</h5>
                         <ul>
                           <li><a href="#">casual shirt</a></li>
                           <li><a href="#">t-shirt</a></li>
@@ -61,7 +58,17 @@
                         </ul>
                       </div>
                       <div class="megamenu-single-item">
-                        <h5>Women</h5>
+                        <h5>HTML</h5>
+                        <ul>
+                          <li><a href="#">Casual Shirt</a></li>
+                          <li><a href="#">Rikke T-shirt</a></li>
+                          <li><a href="#">Mia Top</a></li>
+                          <li><a href="#">Muscle Tee</a></li>
+                          <li><a href="#">Seine Blouse</a></li>
+                        </ul>
+                      </div>
+                      <div class="megamenu-single-item">
+                        <h5>Wordpress</h5>
                         <ul>
                           <li><a href="#">Casual Shirt</a></li>
                           <li><a href="#">Rikke T-shirt</a></li>
@@ -72,7 +79,7 @@
                       </div>
                     </div>
                   </li>
-                  <li><a href="shop.html">About</a></li>
+                  <li><%= link "About", to: page_path(@conn, :about) %></li>
                 </ul>
               </div>
             </div>
