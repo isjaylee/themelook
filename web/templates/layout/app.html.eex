@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Hello Themelook!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/style.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/font-awesome.css") %>">
     <script src="<%= static_path(@conn, "/js/lodash.js") %>"></script>
@@ -18,11 +18,16 @@
     <script src="<%= static_path(@conn, "/js/bootstrap.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/accounting.js") %>"></script>
   </head>
-
-  <body>
+  <body class="gird-2">
     <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user %>
-    <%= if @conn.request_path != "/about", do: render Themelook.LayoutView, "search_form.html", conn: @conn %>
-    <%= render @view_module, @view_template, assigns %>
+    <div class="main-content-section">
+      <div class="container">
+        <div class="row">
+          <%= render Themelook.LayoutView, "sidebar.html", conn: @conn %>
+          <%= render @view_module, @view_template, assigns %>
+        </div>
+      </div>
+    </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

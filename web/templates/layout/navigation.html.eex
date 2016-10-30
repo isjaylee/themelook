@@ -1,34 +1,108 @@
-<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
-  <button class="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-  ☰
-  </button>
-  <%= link "Themelook", to: category_path(@conn, :index), class: "navbar-brand" %>
-  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-  <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
-    <ul class="nav navbar-nav pull-right">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-          <%= link "About", to: page_path(@conn, :about), class: "nav-link" %>
-      </li>
-      <%= if @current_user && @current_user.role == "Admin" do %>
-        <li class="nav-item">
-          <%= link "Manage Themes", to: theme_path(@conn, :index), class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>
-        </li>
-      <% end %>
-      <%#= if @current_user do %>
-      <!-- <li class="nav-item"> -->
-        <%#= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>
-      <!-- </li> -->
-      <%# else %>
-      <!-- <li class="nav-item"> -->
-          <%#= link "Login", to: session_path(@conn, :new), class: "nav-link" %>
-      <!-- </li> -->
-      <%# end %>
-    </ul>
+<div class="header-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Main Menu start -->
+        <div class="main-menu-area megamenu-active">
+          <!-- Logo Start -->
+          <div class="col-md-3 col-sm-12">
+            <div class="site-logo">
+              <a href="index.html"><img src="img/logo/logo.png" alt=""></a>
+            </div>
+          </div>
+          <!-- Logo Start -->
+          <div class="col-md-9 col-sm-12 text-right">
+            <div class="mainmenu">
+              <div class="navbar-collapse collapse">
+                <ul id="nav" class="nav navbar-nav">
+                  <li><a href="shop.html">Home</a></li>
+                  <li class="active megamenu-list dropdown-active">
+                    <a href="index.html">Categories <i class="fa fa-angle-down"></i></a>
+                    <ul class="sub-menu">
+                      <li><a href="index-2.html">Homepage Version 2</a></li>
+                      <li><a href="index-3.html">Homepage Version 3</a></li>
+                      <li><a href="index-4.html">Homepage Version 4</a></li>
+                      <li><a href="index-5.html">Homepage Version 5</a></li>
+                      <li><a href="index-6.html">Homepage Version 6</a></li>
+                      <li><a href="index-7.html">Homepage Version 7</a></li>
+                      <li><a href="index-8.html">Homepage Version 8</a></li>
+                    </ul>
+                  </li>
+                  <li class="megamenu-list">
+                    <a href="shop.html">Frameworks <i class="fa fa-angle-down"></i></a>
+                    <div class="mega-menu">
+                      <div class="mega-menu-image">
+                        <a href="#"><img src="img/menu/megamenu-img.jpg" alt=""></a>
+                      </div>
+                      <div class="megamenu-single-item">
+                        <h5>lookbook</h5>
+                        <ul>
+                          <li><a href="#">necklace</a></li>
+                          <li><a href="#">chunky short striped</a></li>
+                          <li><a href="#">samhar cuff</a></li>
+                          <li><a href="#">nail set</a></li>
+                          <li><a href="#">drop earrings</a></li>
+                        </ul>
+                      </div>
+                      <div class="megamenu-single-item">
+                        <h5>Accessories</h5>
+                        <ul>
+                          <li><a href="#">casual shoes</a></li>
+                          <li><a href="#">bags</a></li>
+                          <li><a href="#">watches</a></li>
+                          <li><a href="#">sweamwear</a></li>
+                          <li><a href="#">sunglasses</a></li>
+                        </ul>
+                      </div>
+                      <div class="megamenu-single-item">
+                        <h5>Men</h5>
+                        <ul>
+                          <li><a href="#">casual shirt</a></li>
+                          <li><a href="#">t-shirt</a></li>
+                          <li><a href="#">zeans</a></li>
+                          <li><a href="#">trousers/ pants </a></li>
+                          <li><a href="#">sweamwear</a></li>
+                        </ul>
+                      </div>
+                      <div class="megamenu-single-item">
+                        <h5>Women</h5>
+                        <ul>
+                          <li><a href="#">Casual Shirt</a></li>
+                          <li><a href="#">Rikke T-shirt</a></li>
+                          <li><a href="#">Mia Top</a></li>
+                          <li><a href="#">Muscle Tee</a></li>
+                          <li><a href="#">Seine Blouse</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li><a href="shop.html">About</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main Menu End -->
+      </div>
+      <!--/ col -->
+    </div>
+    <!--/ row -->
   </div>
-</nav>
+  <!--/ container -->
+</div>
+
+
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-list">
+          <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li>Women</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
