@@ -10,6 +10,7 @@ defmodule Themelook.Router do
     plug :put_secure_browser_headers
     plug Coherence.Authentication.Session
     plug Themelook.SharedMethods
+    plug Themelook.Application, repo: Themelook.Repo
   end
 
   pipeline :protected do

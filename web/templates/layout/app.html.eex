@@ -19,7 +19,7 @@
     <script src="<%= static_path(@conn, "/js/accounting.js") %>"></script>
   </head>
   <body class="gird-2">
-    <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user %>
+    <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user, categories: @categories %>
     <div class="main-content-section">
       <div class="container">
         <div class="row">

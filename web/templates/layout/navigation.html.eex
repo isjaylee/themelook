@@ -19,13 +19,9 @@
                   <li class="active megamenu-list dropdown-active">
                     <a href="index.html">Categories <i class="fa fa-angle-down"></i></a>
                     <ul class="sub-menu">
-                      <li><a href="index-2.html">Homepage Version 2</a></li>
-                      <li><a href="index-3.html">Homepage Version 3</a></li>
-                      <li><a href="index-4.html">Homepage Version 4</a></li>
-                      <li><a href="index-5.html">Homepage Version 5</a></li>
-                      <li><a href="index-6.html">Homepage Version 6</a></li>
-                      <li><a href="index-7.html">Homepage Version 7</a></li>
-                      <li><a href="index-8.html">Homepage Version 8</a></li>
+                      <%= for category <- @categories do %>
+                        <li><a href="index-2.html"><%= category.name %></a></li>
+                      <% end %>
                     </ul>
                   </li>
                   <li class="megamenu-list">
