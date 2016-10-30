@@ -2,6 +2,7 @@ defmodule Themelook.ThemeController do
   use Themelook.Web, :controller
   alias Themelook.{Repo, Theme, Category}
   plug Coherence.Authentication.Session, [protected: true] when action in [:new, :create, :edit, :update, :delete]
+  plug :disable_sidebar when action in [:index, :new, :create, :edit, :update]
 
   def index(conn, _params) do
     themes = Repo.all(from t in Theme, limit: 10) |> Repo.preload(:categories)
@@ -74,6 +75,10 @@ defmodule Themelook.ThemeController do
   def logout(conn, _params) do
     Coherence.SessionController.delete(conn)
     redirect(conn, to: "/")
+  end
+
+  defp disable_sidebar(conn, _params) do
+    assign(conn, :disable_sidebar, true)
   end
 
 end

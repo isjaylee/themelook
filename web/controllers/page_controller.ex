@@ -6,6 +6,6 @@ defmodule Themelook.PageController do
   end
 
   def about(conn, _params) do
-    render conn, "about.html"
+    render conn, "about.html", disable_sidebar: true
   end
 end
