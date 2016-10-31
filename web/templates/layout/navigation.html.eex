@@ -106,13 +106,72 @@
 <div class="breadcrumb-area">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div class="breadcrumb-list">
-          <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li>Women</li>
-          </ul>
-        </div>
+      <div class="col-md-8 col-md-offset-2">
+        <form>
+          <div class="row">
+            <div class="col-md-11">
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" class="form-control" placeholder="Keyword">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-1">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <a href="" class="btn btn-primary"><i class="fa fa-search"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label>Price <small>(set max to 0 for Free themes)</small></label>
+              <div class="form-group">
+                <label class="sr-only">Amount (in dollars)</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Min">
+                  <div class="input-group-addon">to</div>
+                  <input type="text" class="form-control" placeholder="Max">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label>Framework</label>
+              <select class="form-control">
+                <option>All</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label>Publisher <small>(most popular publishers)</small></label>
+              <select class="form-control">
+                <option>All</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <label>Categories</label>
+          <div class="row">
+            <div class="form-group">
+              <%= for category <- @home_categories do %>
+                <div class="col-md-3">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> <%= category.name %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
