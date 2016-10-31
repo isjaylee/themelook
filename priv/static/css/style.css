@@ -1373,6 +1373,18 @@ p.special-price {
     color: #dea136;
 }
 
+.btn-primary {
+    background: #DC9814;
+    border-color: #DC9814;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #DC9814;
+    border-color: #DC9814;
+    opacity: 0.8;
+}
+
 
 /*========================= 
 6. Service area
@@ -2956,6 +2968,9 @@ bleu_slider1_slide_h2 h2 {
 /*========================= 
 14. Shop List
 ===========================*/
+.product-title-star {
+    margin-bottom: 30px;
+}
 
 .list .product-title-star {
     border-bottom: 1px solid #ededed;

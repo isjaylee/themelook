@@ -12,7 +12,8 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
       add :publisher,    :string
       add :description,  :string
       add :price,        :integer
-      add :link,         :string
+      add :theme_link,   :string
+      add :demo_link,    :string
       add :image,        :string
       timestamps
     end

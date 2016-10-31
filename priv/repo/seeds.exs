@@ -25,14 +25,14 @@ for category <- ["Restaurant", "Home Improvement", "Health & Beauty", "Blog", "B
 end
 
 
-Repo.insert!(%Theme{name: "Divi", publisher: "Elegant Themes", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: 69})
+Repo.insert!(%Theme{name: "Divi", publisher: "Elegant Themes", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: 69, demo_link: "https://www.google.com", theme_link: "http://espn.com"})
 |> Repo.preload(:categories)
 |> Ecto.Changeset.change()
 |> Ecto.Changeset.put_assoc(:categories, [Repo.get(Category, 1), Repo.get(Category, 2)])
 |> Repo.update!
 
 
-Repo.insert!(%Theme{name: "Genesis", publisher: "Studio Press", description: "Vivamus ullamcorper eu ipsum fringilla viverra.", price: 169})
+Repo.insert!(%Theme{name: "Genesis", publisher: "Studio Press", description: "Vivamus ullamcorper eu ipsum fringilla viverra.", price: 169, demo_link: "http://cnn.com", theme_link: "https://facebook.com"})
 |> Repo.preload(:categories)
 |> Ecto.Changeset.change()
 |> Ecto.Changeset.put_assoc(:categories, [Repo.get(Category, 4), Repo.get(Category, 5)])
