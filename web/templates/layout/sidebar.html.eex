@@ -24,27 +24,15 @@
       <p>Framework</p>
     </div>
     <div class="sidebar-menu">
-      <ul>
-        <li><a href="#">Wordpress<span>(20)</span></a></li>
-        <li><a href="#">HTML <span>(16)</span></a></li>
-        <li><a href="#">Shopify <span>(18)</span></a></li>
-        <li><a href="#">Opencart <span>(20)</span></a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="product-single-sidebar">
-    <div class="sidebar-title">
-      <p>Tags</p>
-    </div>
-    <div class="tagcloud">
-      <a href="#">T.shirt</a> 
-      <a href="#">Men Store</a>
-      <a href="#">Men</a>
-      <a href="#">Dress</a>
-      <a href="#">Fashion</a>
-      <a href="#">Style</a>
-      <a href="#">Bags</a>
-      <a href="#">Footwear</a>
+      <div id="categorymenu">
+        <ul>
+          <%= for framework <- @frameworks do %>
+            <li class="has-sub">
+              <%= link framework.name, to: category_path(@conn, :show, framework) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

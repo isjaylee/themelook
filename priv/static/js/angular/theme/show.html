@@ -18,29 +18,14 @@
           <div class="product-details-list">
             <div class="product-title-star">
               <h5 class="product-title single-product"><a href="#">{{vm.theme.name}}</a></h5>
-              <div class="product-review-list">
-                <ul>
-                  <li>
-                    <div class="star">
-                      <a href="#"><span class="yes"><i class="fa fa-star"></i></span></a>
-                      <a href="#"><span class="yes"><i class="fa fa-star"></i></span></a>
-                      <a href="#"><span class="yes"><i class="fa fa-star"></i></span></a>
-                      <a href="#"><span class="yes"><i class="fa fa-star"></i></span></a>
-                      <a href="#"><span class="yes"><i class="fa fa-star-o"></i></span></a>
-                    </div>
-                  </li>
-                </ul>
+              <div class="price-box">
+                <p class="special-price"><span class="price">{{vm.formatPrice(vm.theme.price)}}</span></p>
               </div>
+              <a data-ng-href="{{vm.theme.demo_link}}" target="_blank" class="btn btn-primary btn-sm">View Demo</a>
+              <a data-ng-href="{{vm.theme.theme_link}}" target="_blank" class="btn btn-primary btn-sm">Theme Site</a>
+              <hr>
+              <p>{{vm.theme.description}}</p>
             </div>
-            <a data-ng-href="{{vm.theme.demo_link}}" target="_blank" class="btn btn-primary btn-sm">View Demo</a>
-            <a data-ng-href="{{vm.theme.theme_link}}" target="_blank" class="btn btn-primary btn-sm">Theme Site</a>
-            <hr>
-            <!-- Product price -->
-            <div class="price-box">
-              <p class="special-price"><span class="price">{{vm.formatPrice(vm.theme.price)}}</span></p>
-            </div>
-            <!--/ Product price -->
-            <p>{{vm.theme.description}}</p>
           </div>
         </div>
       </div>
@@ -52,8 +37,7 @@
         <div class="details">
           <div class="product-menu">
             <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#review">REVIEW</a></li>
-              <li><a data-toggle="tab" href="#tags">TAGS</a></li>
+              <li class="active"><a data-toggle="tab" href="#tags">Categories</a></li>
             </ul>
           </div>
         </div>
@@ -62,169 +46,18 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="product-list tab-content">
-          <div id="review" class="tab-pane fade in active">
-            <p>RAfiq ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullam co labo ris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proidentS. Lorem ipsum dolor sit amet, consectetur vicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-          </div>
-          <div id="tags" class="tab-pane fade in">
-            <p>Salim Rana ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullam co labo ris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proidentS. Lorem ipsum dolor sit amet, consectetur vicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- / row-->
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="product-single-sidebar upsell-product">
-          <div class="sidebar-title">
-            <p>SIMILAR THEMES</p>
+          <div id="tags" class="tab-pane fade in active">
+            <p class="tagcloud">
+              <a href="#">Men Store</a>
+              <a href="#">Men</a>
+              <a href="#">Dress</a>
+              <a href="#">Fashion</a>
+              <a href="#">Style</a>
+              <a href="#">Bags</a>
+              <a href="#">Footwear</a>
+            </p>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <!-- Single Item  -->
-        <div class="single-item">
-          <div class="single-product fix">
-            <div class="s-product-img">
-              <a href="#"><img src="img/product/1.png" alt="">
-              <span class="secound-img"><img alt="" src="img/product/3.png"></span>
-              </a>
-              <div class="img-overlay"></div>
-              <div class="image-title">
-                <!-- Single product hover Title-->
-                <div class="image-title-table">
-                  <div class="image-title-table-cell">
-                    <p>Ganni</p>
-                  </div>
-                </div>
-                <!--/ Single product hover Title-->
-              </div>
-              <div class="single-product-hover">
-                <!-- size and link -->
-                <div class="available-size">
-                  <p>Available</p>
-                  <a href="#">s</a><span>/</span>
-                  <a href="#">m</a><span>/</span>
-                  <a href="#">l</a>
-                </div>
-                <div class="single-product-links">
-                  <div class="s-link"><a href="#"><i class="pe-7s-like"></i></a></div>
-                  <div class="s-link"><a href="#"><i class="pe-7s-shopbag"></i></a></div>
-                  <div class="s-link"><a href="#"><i class="pe-7s-search"></i></a></div>
-                </div>
-                <!-- size and link end-->
-              </div>
-            </div>
-            <!-- Single product Title-->
-            <div class="product-title">
-              <a href="#">The Arley in Wildfire</a>
-            </div>
-            <!-- Product price -->
-            <div class="price-box">
-              <p class="old-price"> <span class="price"><del>$450.00</del></span></p>
-              <p class="special-price"><span class="price">$320.00</span></p>
-            </div>
-            <!--/ Product price -->
-          </div>
-        </div>
-        <!-- Single Item -->			
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <!-- Single Item  -->
-        <div class="single-item">
-          <div class="single-product fix">
-            <!-- Discount - new - hot -->
-            <span class="special">hot</span>
-            <!--/ Discount - new - hot -->
-            <div class="s-product-img">
-              <a href="#"><img src="img/product/2.png" alt="">
-              <span class="secound-img"><img alt="" src="img/product/4.png"></span>
-              </a>
-              <div class="img-overlay"></div>
-              <div class="image-title">
-                <!-- Single product hover Title-->
-                <div class="image-title-table">
-                  <div class="image-title-table-cell">
-                    <p>Ganni</p>
-                  </div>
-                </div>
-                <!--/ Single product hover Title-->
-              </div>
-              <div class="single-product-hover">
-                <!-- size and link -->
-                <div class="available-size">
-                  <p>Available</p>
-                  <a href="#">s</a><span>/</span>
-                  <a href="#">m</a><span>/</span>
-                  <a href="#">l</a>
-                </div>
-                <div class="single-product-links">
-                  <div class="s-link"><a href="#"><i class="pe-7s-like"></i></a></div>
-                  <div class="s-link"><a href="#"><i class="pe-7s-shopbag"></i></a></div>
-                  <div class="s-link"><a href="#"><i class="pe-7s-search"></i></a></div>
-                </div>
-                <!-- size and link end-->
-              </div>
-            </div>
-            <!-- Single product Title-->
-            <div class="product-title">
-              <a href="#">The Arley in Wildfire</a>
-            </div>
-            <!-- Product price -->
-            <div class="price-box">
-              <p class="special-price"><span class="price">$320.00</span></p>
-            </div>
-            <!--/ Product price -->
-          </div>
-        </div>
-        <!-- Single Item -->			
-      </div>
-      <div class="col-md-4 col-sm-6 hidden-sm">
-        <!-- Single Item  -->
-        <div class="single-item">
-          <div class="single-product fix">
-            <div class="s-product-img">
-              <a href="#"><img src="img/product/3.png" alt="">
-              <span class="secound-img"><img alt="" src="img/product/7.png"></span>
-              </a>
-              <div class="img-overlay"></div>
-              <div class="image-title">
-                <!-- Single product hover Title-->
-                <div class="image-title-table">
-                  <div class="image-title-table-cell">
-                    <p>Ganni</p>
-                  </div>
-                </div>
-                <!--/ Single product hover Title-->
-              </div>
-              <div class="single-product-hover">
-                <!-- size and link -->
-                <div class="available-size">
-                  <p>Available</p>
-                  <a href="#">s</a><span>/</span>
-                  <a href="#">m</a><span>/</span>
-                  <a href="#">l</a>
-                </div>
-                <div class="single-product-links">
-                  <div class="s-link"><a href="#"><i class="pe-7s-like"></i></a></div>
-                  <div class="s-link"><a href="#"><i class="pe-7s-shopbag"></i></a></div>
-                  <div class="s-link"><a href="#"><i class="pe-7s-search"></i></a></div>
-                </div>
-                <!-- size and link end-->
-              </div>
-            </div>
-            <!-- Single product Title-->
-            <div class="product-title">
-              <a href="#">The Arley in Wildfire</a>
-            </div>
-            <!-- Product price -->
-            <div class="price-box">
-              <p class="old-price"> <span class="price"><del>$450.00</del></span></p>
-              <p class="special-price"><span class="price">$320.00</span></p>
-            </div>
-            <!--/ Product price -->
-          </div>
-        </div>
-        <!-- Single Item -->
       </div>
     </div>
   </div>

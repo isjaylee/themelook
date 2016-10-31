@@ -23,7 +23,7 @@
     <div class="main-content-section">
       <div class="container">
         <div class="row">
-          <%= if !assigns[:disable_sidebar], do: render Themelook.LayoutView, "sidebar.html", conn: @conn, home_categories: @home_categories %>
+          <%= if !assigns[:disable_sidebar], do: render Themelook.LayoutView, "sidebar.html", conn: @conn, home_categories: @home_categories, frameworks: @frameworks %>
           <%= render @view_module, @view_template, assigns %>
         </div>
       </div>

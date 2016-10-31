@@ -1,14 +1,22 @@
 defmodule Themelook.Application do
   import Plug.Conn
-  alias Themelook.{Repo, Category}
+  import Ecto.Query
+  alias Themelook.{Repo, Category, Theme}
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)
   end
 
   def call(conn, repo) do
-    home_categories = Repo.all(Category)
-    assign(conn, :home_categories, home_categories)
+    cat_query = from c in Category,
+      where: not c.name in ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop"]
+    framework_query = from c in Category,
+      where: c.name in ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop"]
+    home_categories = Repo.all(cat_query)
+    frameworks = Repo.all(framework_query)
+    conn
+    |> assign(:home_categories, home_categories)
+    |> assign(:frameworks, frameworks)
   end
 
 end
