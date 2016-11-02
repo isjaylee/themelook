@@ -1,12 +1,59 @@
-<div class="jumbotron">
-  <%= form_for @conn, theme_path(@conn, :search), [as: :search, method: :get], fn f -> %>
-    <div class="col-lg-6 offset-lg-3">
-      <div class="form-group">
-        <%= text_input f, :name, class: "form-control", placeholder: "Search", autofocus: true %>
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-16 col-md-offset-2">
+        <%= form_for @conn, theme_path(@conn, :search_themes), [as: :search_themes, method: :get], fn f -> %>
+          <div class="row">
+            <div class="col-md-18">
+              <div class="form-group">
+                <label>Search</label>
+                <%= text_input f, :name, class: "form-control", placeholder: "Search", autofocus: true %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-2">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <%= submit raw("<i class='fa fa-search'></i>"), class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Price <small>(set max to 0 for Free themes)</small></label>
+              <div class="form-group">
+                <label class="sr-only">Amount (in dollars)</label>
+                <div class="input-group">
+                  <%= text_input f, :min, class: "form-control", placeholder: "Min" %>
+                  <div class="input-group-addon">to</div>
+                  <%= text_input f, :max, class: "form-control", placeholder: "Max" %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Framework</label>
+              <%= select f, :framework_id, @frameworks |> Enum.map(&{&1.name, &1.id}), [class: "form-control", prompt: "All"] %>
+            </div>
+            <div class="col-md-6">
+              <label>Publisher <small>(most popular publishers)</small></label>
+              <%= select f, :publisher, ["Elegant Themes", "DIYthemes", "Studio Press", "Themefuse"], [class: "form-control", prompt: "All"] %>
+            </div>
+          </div>
+          <label>Categories</label>
+          <div class="row">
+            <div class="form-group">
+              <%= for category <- @home_categories do %>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <%= checkbox :categories, "#{category.id}", [value: category.name, checked: active_checkbox(@conn, category.id)]  %> <%= category.name %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="form-group">
-      <%= submit raw("<i class='fa fa-search'></i>"), class: "btn btn-primary" %>
-    </div>
-  <% end %>
+  </div>
 </div>

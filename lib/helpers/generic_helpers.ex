@@ -1,10 +1,19 @@
 defmodule Themelook.GenericHelpers do
   require IEx
 
-  def show_sidebar(conn) do
-    paths = ["/about", "/themes", "/themes/new"]
-    Enum.any?(paths, fn(path) ->
-      conn.request_path == path
-    end)
+  def active_checkbox(conn, id) do
+    if conn.params["categories"] != nil do
+      active =
+        conn.params["categories"]
+        |> Map.fetch!(Integer.to_string(id))
+
+      case active do
+        "true" ->
+          "checked"
+        _ ->
+          nil
+      end
+    end
   end
+
 end

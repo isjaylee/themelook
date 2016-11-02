@@ -42,7 +42,7 @@ defmodule Themelook.Router do
     get "/", CategoryController, :index
     get "/about", PageController, :about
     get "/logout", ThemeController, :logout
-    get "/search", ThemeController, :search
+    get "/search", ThemeController, :search_themes
     resources "/themes", ThemeController
     resources "/categories", CategoryController, only: [:index, :show]
   end

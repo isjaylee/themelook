@@ -37,6 +37,8 @@ defmodule Themelook.Web do
 
       import Themelook.Router.Helpers
       import Themelook.Gettext
+      import Tirexs.HTTP
+      import Tirexs.Search
       require IEx
     end
   end

@@ -34,6 +34,8 @@ defmodule Themelook.ThemeController do
         |> Ecto.Changeset.change()
         |> Ecto.Changeset.put_assoc(:categories, Enum.map(theme_params["categories"]["0"]["categories"], fn(x) -> Repo.get(Category, x) end))
         |> Repo.update!
+        put("/themelook/themes/#{theme.id}", [name: theme.name, price: theme.price,
+                                              description: theme.description, publisher: theme.publisher])
         conn
         |> put_flash(:info, "Created successfully.")
         |> redirect(to: category_path(conn, :index))
@@ -64,12 +66,23 @@ defmodule Themelook.ThemeController do
     end
   end
 
-  def search(conn, params) do
+  def search_themes(conn, params) do
     categories = Repo.all(Category)
-    themes =
-    Repo.all(from t in Theme, where: ilike(t.name, ^"%#{params["search"]["name"]}%"))
-    |> Repo.preload(:categories)
-    render(conn, "search.html", themes: themes, categories: categories)
+    query = %{query: %{bool: %{must: [], filter: %{bool: %{should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
+    search_params = []
+    if params["search_themes"]["name"] != "", do: search_params = search_params ++ [%{ "match": %{ "name": %{"query": params["search_themes"]["name"], "fuzziness": 2}}}]
+    if params["search_themes"]["publisher"] != "", do: search_params = search_params ++ [%{ "match": %{ "publisher": %{"query": params["search_themes"]["publisher"], "fuzziness": 2}}}]
+    query = put_in(query, [:query, :bool, :must], search_params)
+    if params["search_themes"]["max"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :lte], params["search_themes"]["max"])
+    if params["search_themes"]["min"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :gte], params["search_themes"]["min"])
+    category_ids = Enum.filter(params["categories"], fn({k,v}) -> v == "true" end) |> Enum.into(%{}) |> Map.keys
+    if category_ids != [], do: query = put_in(query, [:query, :bool, :filter, :bool, :should], %{"terms": %{"categories": category_ids}})
+
+    {:ok, code, response} = post("/themelook/themes/_search", [], Poison.encode!(query))
+
+    theme_ids = response.hits.hits |> Enum.map(& &1[:_id])
+    themes = Repo.all(from t in Theme, where: t.id in ^theme_ids, preload: :categories)
+    render(conn, "search.html", themes: themes, categories: categories, disable_sidebar: true)
   end
 
   def logout(conn, _params) do

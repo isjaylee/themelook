@@ -10,6 +10,8 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+import Tirexs.HTTP
+
 alias Themelook.{Repo, User, Category, Theme}
 
 Repo.delete_all(User)
@@ -39,6 +41,16 @@ Repo.insert!(%Theme{name: "Genesis", publisher: "Studio Press", description: "Vi
 |> Ecto.Changeset.put_assoc(:categories, [Repo.get(Category, 4), Repo.get(Category, 5)])
 |> Repo.update!
 
-Repo.insert!(%Theme{name: "Thesis", publisher: "DIY Themes", description: "Pellentesque aliquet lorem neque, quis ullamcorper leo gravida quis.", price: 139})
+Repo.insert!(%Theme{name: "Thesis", publisher: "DIYthemes", description: "Pellentesque aliquet lorem neque, quis ullamcorper leo gravida quis.", price: 139})
 Repo.insert!(%Theme{name: "Avada", publisher: "Theme Fusion", description: "Nam gravida ex a quam placerat, ut vehicula magna ornare.", price: 59})
 Repo.insert!(%Theme{name: "Gantry", publisher: "RocketTheme", description: "Gantry makes use of widgetized page layouts, where individual widgets can be dragged and dropped into place to populate the page layouts with content.", price: 0})
+
+
+# Index themes in Elasticsearch
+themes = Repo.all(Theme)
+
+Enum.each(themes, fn(x) ->
+  theme = x |> Repo.preload(:categories)
+  category_ids = Enum.reduce(theme.categories, [], fn(x,acc) -> acc ++ [x.id] end)
+  put("/themelook/themes/#{theme.id}", [name: theme.name, price: theme.price, description: theme.description, publisher: theme.publisher, categories: category_ids])
+end)
