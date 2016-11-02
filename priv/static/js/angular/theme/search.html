@@ -1,56 +1,81 @@
-<div class="container-fluid" id="main">
-  <div class="row row-offcanvas row-offcanvas-left">
-    <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
-      <ul class="nav nav-pills nav-stacked">
-        <li class="nav-item"><a href="/" class="nav-link">All</a></li>
-        <li class="nav-item" data-ng-repeat="category in vm.categories"><a class="nav-link" href="/categories/{{category.id}}">{{category.name}}</a></li>
-      </ul>
-    </div>
-    <!--/col-->
-    <div class="col-md-9 col-lg-10 main">
-      <ol class="breadcrumb">
-        <div data-ng-if="vm.searchView">
-          <li class="breadcrumb-item">Search results <i class="fa fa-times" data-ng-click="vm.cancelSearch()"></i></li>
-        </div>
-        <div data-ng-if="!vm.searchView">
-          <li class="breadcrumb-item">Search results</li>
-        </div>
-        <li class="pull-right">
-          Sort by:
-          <div class="btn-group" uib-dropdown is-open="status.isopen">
-            <button id="single-button" type="button" class="btn btn-sm" uib-dropdown-toggle ng-disabled="disabled">
-              {{vm.sortBy}}<span class="caret"></span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Price - High to Low')">Price - High to Low</a>
-              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Price - Low to High')">Price - Low to High</a>
-              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Newest')">Newest</a>
-              <a class="dropdown-item" href="" data-ng-click="vm.sortThemes('Oldest')">Oldest</a>
-            </div>
+<div class="col-md-20">
+  <!-- product area-->
+  <div class="products-area">
+    <div class="row">
+      <div class="col-md-20">
+        <div class="toolbar">
+          <div class="view-mode">
+            <p>HOME / ALL</p>
           </div>
-        </li>
-      </ol>
-      <!--toggle sidebar button-->
-      <p class="hidden-md-up">
-        <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
-      </p>
-
-      <div class="row">
-        <div class="col-lg-3 col-md-4" data-ng-repeat="theme in vm.themes">
-          <div class="theme-index-page card">
-            <a href="/themes/{{theme.id}}">
-              <img class="card-img-top img-responsive" data-ng-src="{{theme.image}}" alt="{{vm.theme.name}} theme image">
-            </a>
-            <div class="card-block">
-              <h4 class="card-title"><a href="/themes/{{theme.id}}">{{theme.name}}</a></h4>
-              <p class="card-text pull-left">{{theme.publisher}}</p>
-              <p class="card-text pull-right">{{vm.formatPrice(theme.price)}}</p>
+          <div class="result-short pull-right">
+            <div class="result-count">
+              <p>Showing <span>1-12</span> of <span> 120 </span> results</p>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{vm.sortBy}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                <li><a href="" data-ng-click="vm.sortThemes('Price - High to Low')">Price - High to Low</a></li>
+                <li><a href="" data-ng-click="vm.sortThemes('Price - Low to High')">Price - Low to High</a></li>
+                <li><a href="" data-ng-click="vm.sortThemes('Newest')">Newest</a></li>
+                <li><a href="" data-ng-click="vm.sortThemes('Oldest')">Oldest</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-      <!--/row-->
     </div>
-    <!--/main col-->
+    <div class="row">
+      <div class="col-md-4" data-ng-repeat="theme in vm.themes">
+        <!-- Single Item  -->
+        <div class="single-item">
+          <div class="single-product fix">
+            <div class="s-product-img">
+              <a href="/themes/{{theme.id}}"><img data-ng-src="{{theme.image}}" alt="{{vm.theme.name}} theme image"></a>
+            </div>
+            <!-- Single product Title-->
+            <div class="product-title">
+              <a href="#">{{theme.name}}</a>
+            </div>
+            <small>{{theme.publisher}}</small>
+            <!-- Product price -->
+            <div class="price-box">
+              <p class="special-price"><span class="price">{{vm.formatPrice(theme.price)}}</span></p>
+            </div>
+            <!--/ Product price -->
+          </div>
+        </div>
+        <!-- Single Item -->
+      </div>
+    </div>
+    <!--/ All product-->
+    <!--Pagination -->
+    <div class="row">
+      <div class="col-md-20">
+        <div class="pagination-area">
+          <div class="paginations">
+            <div class="row">
+              <div class="col-md-10 pull-right">
+                <div class="product-page-number">
+                  <ul class="">
+                    <li><a href="#" class="prev"><span><i class="fa fa-angle-left"></i></span> Pre</a></li>
+                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">. . . </a></li>
+                    <li><a href="#">10</a></li>
+                    <li><a href="#" class="next">Next <span><i class="fa fa-angle-right"></i></span> </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Pagination End-->
   </div>
+  <!--/ product area-->
 </div>

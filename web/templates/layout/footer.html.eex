@@ -1,0 +1,21 @@
+<div class="footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 text-left">
+          <div class="copyright">
+            <p>© <%= DateTime.utc_now |> Map.fetch!(:year) %> <a href="/"><span>Themelook</span></a>
+          </div>
+        </div>
+        <div class="col-md-15 text-right">
+          <div class="footer-bottom-menu">
+            <ul>
+              <li><a href="#">Privacy &amp; Cookies</a></li>
+              <li><a href="#">Terms &amp; Conditions </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

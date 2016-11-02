@@ -1593,6 +1593,7 @@ p.special-price {
 ===========================*/
 
 .footer-bottom {
+    background: none repeat scroll 0 0 #f7f7f7;
     padding: 30px 0;
 }
 

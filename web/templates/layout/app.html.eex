@@ -19,7 +19,7 @@
     <script src="<%= static_path(@conn, "/js/accounting.js") %>"></script>
   </head>
   <body class="gird-2">
-    <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user, home_categories: @home_categories %>
+    <%= render Themelook.LayoutView, "navigation.html", conn: @conn, current_user: @current_user, home_categories: @home_categories, frameworks: @frameworks %>
     <div class="main-content-section">
       <div class="container">
         <div class="row">
@@ -28,6 +28,7 @@
         </div>
       </div>
     </div>
+    <%= render Themelook.LayoutView, "footer.html", conn: @conn %>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
