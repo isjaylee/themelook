@@ -48,13 +48,7 @@
         <div class="product-list tab-content">
           <div id="tags" class="tab-pane fade in active">
             <p class="tagcloud">
-              <a href="#">Men Store</a>
-              <a href="#">Men</a>
-              <a href="#">Dress</a>
-              <a href="#">Fashion</a>
-              <a href="#">Style</a>
-              <a href="#">Bags</a>
-              <a href="#">Footwear</a>
+              <a href="/categories/{{category.id}}" data-ng-repeat="category in vm.theme.categories">{{category.name}}</a>
             </p>
           </div>
         </div>
