@@ -66,3 +66,4 @@ config :themelook, Themelook.Repo,
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
+config :tirexs, :uri, System.get_env("BONSAI_URL")
