@@ -6,7 +6,7 @@ defmodule Themelook.ThemeController do
 
   def index(conn, _params) do
     themes = Repo.all(from t in Theme, limit: 10) |> Repo.preload(:categories)
-    render(conn, "index.html", themes: themes)
+    render(conn, "index.html", themes: themes, disable_search_form: true)
   end
 
   def show(conn, %{"id" => id}) do
@@ -18,7 +18,7 @@ defmodule Themelook.ThemeController do
   def new(conn, _params) do
     changeset = Theme.changeset(%Theme{categories: [%Category{}]})
     categories = Repo.all(Category) |> Enum.map(&{&1.name, &1.id})
-    render(conn, "new.html", changeset: changeset, categories: categories)
+    render(conn, "new.html", changeset: changeset, categories: categories, disable_search_form: true)
   end
 
   def create(conn, %{"theme" => theme_params}) do

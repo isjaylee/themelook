@@ -1640,6 +1640,9 @@ p.special-price {
 /*========================= 
 8. Home-2
 ===========================*/
+.header-area {
+  border-bottom: 1px solid #F8F8F8;
+}
 
 .home2.slider-wrap {
     position: relative;
@@ -2537,6 +2540,7 @@ bleu_slider1_slide_h2 h2 {
 .shop-1 .breadcrumb-area {
     background: url("") repeat scroll 0 0 #f8f8f8;
     border-top: 1px solid #EBEBEB;
+    padding: 20px 0;
 }
 
 .breadcrumb-area .breadcrumb-list .breadcrumb,
