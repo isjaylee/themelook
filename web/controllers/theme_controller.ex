@@ -53,7 +53,7 @@ defmodule Themelook.ThemeController do
     theme = Repo.get(Theme, id) |> Repo.preload([:categories])
     categories = Repo.all(Category) |> Enum.map(&{&1.name, &1.id})
     changeset = theme |> Theme.changeset
-    render(conn, "edit.html", changeset: changeset, theme: theme, categories: categories)
+    render(conn, "edit.html", changeset: changeset, theme: theme, categories: categories, disable_search_form: true)
   end
 
   def update(conn, %{"id" => id, "theme" => theme_params}) do
