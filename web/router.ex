@@ -41,6 +41,8 @@ defmodule Themelook.Router do
     pipe_through :browser
     get "/", CategoryController, :index
     get "/about", PageController, :about
+    get "/privacy", PageController, :privacy
+    get "/terms", PageController, :terms
     get "/logout", ThemeController, :logout
     get "/search", ThemeController, :search_themes
     resources "/themes", ThemeController
