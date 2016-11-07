@@ -11,6 +11,12 @@
       vm.formatPrice = formatPrice;
       vm.sortThemes = sortThemes;
       vm.sortBy = 'Newest';
+      vm.loadMore = loadMore;
+      vm.showLoadMore = true;
+
+      var themeCount = parseInt($window.Themelook.themeCount);
+
+      initialLoad();
 
       function formatPrice(price) {
         if (price === 0) {
@@ -43,6 +49,25 @@
 
           break;
         }
+      }
+
+      function loadMore(offset) {
+        Theme.loadMore(offset).then(
+          function success(response){
+            vm.themes = vm.themes.concat(response);
+
+            if (themeCount === vm.themes.length) {
+              vm.showLoadMore = false;
+            }
+          }
+        );
+      }
+
+      function initialLoad() {
+        if (themeCount === vm.themes.length) {
+          vm.showLoadMore = false;
+        }
+        return vm.showLoadMore;
       }
 
     }]);

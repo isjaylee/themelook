@@ -2,11 +2,11 @@ defmodule Themelook.Api.V1.ThemeController do
   use Themelook.Web, :controller
   alias Themelook.{Theme}
 
-  # Coherence.Authentication.Session, protected: true when action != :index
+  plug Coherence.Authentication.Session, [protected: true] when action in [ :create]
 
-  def index(conn, _params) do
-    themes = Repo.all(Theme)
-    |> Repo.preload(:categories)
+  def index(conn, params) do
+    offset = if is_nil(params["offset"]), do: 16, else: params["offset"]
+    themes = Repo.all(from t in Theme, order_by: [desc: t.inserted_at], limit: 16, offset: ^offset, preload: :categories)
     render(conn, "index.json", themes: themes)
   end
 

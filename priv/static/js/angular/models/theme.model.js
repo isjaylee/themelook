@@ -8,19 +8,26 @@
       $log.info('{Model} Defining the Theme model.');
 
       return {
-        getAll: getAll
+        getAll: getAll,
+        loadMore: loadMore
       };
 
       /*----------------------------------------------------------------------------------------------
        * MANAGEMENT METHODS
        *--------------------------------------------------------------------------------------------*/
-      function  getAll() {
+      function getAll() {
         return $http({
           method: 'GET',
           url: _url()
         }).then(_success);
       }
 
+      function loadMore(offset) {
+        return $http({
+          method: 'GET',
+          url: _url() + `?offset=${offset}`
+        }).then(_success);
+      }
       /*----------------------------------------------------------------------------------------------
       /*----------------------------------------------------------------------------------------------
        * HELPER METHODS

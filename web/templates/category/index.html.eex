@@ -1,6 +1,7 @@
 <script>
   window.Themelook = window.Themelook || {};
   window.Themelook.themes = '<%= Poison.encode!(@themes) |> escape_javascript |> raw %>';
+  window.Themelook.themeCount = '<%= Poison.encode!(@theme_count) |> escape_javascript |> raw %>';
   window.Themelook.categories = '<%= Poison.encode!(@categories) |> escape_javascript |> raw %>';
 </script>
 

@@ -5,7 +5,7 @@ defmodule Themelook.ThemeController do
   plug :disable_sidebar when action in [:index, :new, :create, :edit, :update]
 
   def index(conn, _params) do
-    themes = Repo.all(from t in Theme, limit: 10) |> Repo.preload(:categories)
+    themes = Repo.all(from t in Theme, limit: 16) |> Repo.preload(:categories)
     render(conn, "index.html", themes: themes, disable_search_form: true)
   end
 
