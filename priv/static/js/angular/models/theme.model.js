@@ -9,7 +9,8 @@
 
       return {
         getAll: getAll,
-        loadMore: loadMore
+        loadMore: loadMore,
+        searchLoadMore: searchLoadMore
       };
 
       /*----------------------------------------------------------------------------------------------
@@ -26,6 +27,13 @@
         return $http({
           method: 'GET',
           url: _url() + `?offset=${offset}`
+        }).then(_success);
+      }
+
+      function searchLoadMore(offset, searchParams) {
+        return $http({
+          method: 'GET',
+          url: `/api/v1/search_themes?${searchParams}&offset=${offset}`
         }).then(_success);
       }
       /*----------------------------------------------------------------------------------------------

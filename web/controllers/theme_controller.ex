@@ -72,7 +72,7 @@ defmodule Themelook.ThemeController do
 
   def search_themes(conn, params) do
     categories = Repo.all(Category)
-    query = %{query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
+    query = %{from: 0, size: 20, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
     search_params = []
     if params["search_themes"]["name"] != "", do: search_params = search_params ++ [%{ "match": %{ "name": %{"query": params["search_themes"]["name"], "fuzziness": 2}}}]
     if params["search_themes"]["publisher"] != "", do: search_params = search_params ++ [%{ "match": %{ "publisher": %{"query": params["search_themes"]["publisher"], "fuzziness": 2}}}]
@@ -87,7 +87,7 @@ defmodule Themelook.ThemeController do
 
     theme_ids = response.hits.hits |> Enum.map(& &1[:_id])
     themes = Repo.all(from t in Theme, where: t.id in ^theme_ids, preload: :categories)
-    render(conn, "search.html", themes: themes, categories: categories, disable_sidebar: true)
+    render(conn, "search.html", themes: themes, categories: categories, search_params: params, disable_sidebar: true)
   end
 
   def logout(conn, _params) do

@@ -2,6 +2,7 @@
   window.Themelook = window.Themelook || {};
   window.Themelook.themes = '<%= Poison.encode!(@themes) |> escape_javascript |> raw %>';
   window.Themelook.categories = '<%= Poison.encode!(@categories) |> escape_javascript |> raw %>';
+  window.Themelook.searchParams = '<%= Poison.encode!(@search_params) |> escape_javascript |> raw %>';
 </script>
 
 <script src="<%= static_path(@conn, "/js/themelook.module.js") %>"></script>

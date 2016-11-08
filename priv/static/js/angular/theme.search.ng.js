@@ -2,16 +2,19 @@
   'use strict';
 
   angular.module('themelook').controller('ThemeSearchController', [
-    '$http', '$window',
+    '$http', '$window', '$httpParamSerializerJQLike',
     'Theme', 'Category',
 
-    function($http, $window, Theme, Category){
+    function($http, $window, $httpParamSerializerJQLike, Theme, Category){
       var vm = this;
       vm.themes = JSON.parse($window.Themelook.themes);
       vm.categories = JSON.parse($window.Themelook.categories);
+      vm.searchParams = JSON.parse($window.Themelook.searchParams);
       vm.formatPrice = formatPrice;
       vm.sortThemes = sortThemes;
       vm.sortBy = 'Newest';
+      vm.loadMore = loadMore;
+      vm.showLoadMore = true;
 
       function formatPrice(price) {
         if (price === 0) {
@@ -44,6 +47,19 @@
 
           break;
         }
+      }
+
+      function loadMore(offset) {
+        var params = $httpParamSerializerJQLike(vm.searchParams); // Serialize params
+        Theme.searchLoadMore(offset, params).then(
+          function success(response){
+            vm.themes = vm.themes.concat(response);
+
+            if (response.length < 20) {
+              vm.showLoadMore = false;
+            }
+          }
+        );
       }
 
     }]);
