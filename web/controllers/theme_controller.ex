@@ -5,8 +5,8 @@ defmodule Themelook.ThemeController do
   plug :disable_sidebar when action in [:index, :new, :create, :edit, :update]
 
   def index(conn, _params) do
-    themes = Repo.all(from t in Theme, limit: 16) |> Repo.preload(:categories)
-    render(conn, "index.html", themes: themes, disable_search_form: true)
+    themes = Repo.all(from t in Theme, order_by: [desc: t.id]) |> Repo.preload(:categories)
+    render(conn, "index.html", themes: themes, disable_search_form: true, disable_sidebar: true)
   end
 
   def show(conn, %{"id" => id}) do
@@ -72,14 +72,18 @@ defmodule Themelook.ThemeController do
         |> Ecto.Changeset.put_assoc(:categories, Enum.filter(conn.params["categories"], fn({k,v}) -> v == "true" end) |> Enum.map(fn({k,v}) -> Repo.get(Category, k) end))
         |> Repo.update!
 
-        theme_with_cats = theme |> Repo.preload(:categories)
-        category_ids = Enum.reduce(theme_with_cats.categories, [], fn(x,acc) -> acc ++ [x.id] end)
+        category_ids =
+          Enum.filter(conn.params["categories"], fn({k,v}) -> v == "true" end)
+          |> Enum.into(%{})
+          |> Map.keys
+          |> Enum.reduce([], fn(x, acc) -> acc ++ [String.to_integer(x)] end)
+
         put("/themelook/themes/#{theme.id}", [name: theme.name, price: theme.price,
                                               description: theme.description, publisher: theme.publisher,
                                               categories: category_ids])
         conn
         |> put_flash(:info, "Theme updated successfully.")
-        |> redirect(to: theme_path(conn, :show, theme))
+        |> redirect(to: theme_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", theme: theme, changeset: changeset)
     end
