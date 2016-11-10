@@ -43,7 +43,7 @@
             <div class="form-group">
               <%= for category <- @home_categories do %>
                 <div class="col-md-4">
-                    <%= checkbox :categories, "#{category.id}", [value: category.name, checked: active_checkbox(@conn, category.id)]  %> <%= category.name %>
+                  <%= checkbox :categories, "#{category.id}", [value: category.name, checked: active_checkbox(@conn, category.id)]  %> <%= category.name %>
                 </div>
               <% end %>
             </div>

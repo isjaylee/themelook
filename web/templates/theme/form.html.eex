@@ -31,11 +31,19 @@
     <%= label f, :image %>
     <%= file_input f, :image, class: "form-control" %>
   </div>
+  <%= label f, :categories %>
   <div class="form-group">
-    <%= label f, :categories %>
-    <%= inputs_for f, :categories, fn e -> %>
-      <%= multiple_select(e, :categories, @categories, class: "form-control", size: "10") %>
-    <% end %>
+    <div class="row">
+      <%= for category <- @categories do %>
+        <div class="col-md-4">
+          <%= checkbox :categories, "#{category.id}", [value: category.name, checked: form_active_checkbox(@conn, category.id)]  %> <%= category.name %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <%= submit "Create", class: "btn btn-primary" %>
+  <div class="form-group">
+    <div class="row">
+      <%= submit "Create", class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>

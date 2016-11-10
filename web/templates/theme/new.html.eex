@@ -4,6 +4,7 @@
   </div>
   <%= render "form.html", changeset: @changeset,
                           action: theme_path(@conn, :create),
+                          conn: @conn,
                           categories: @categories %>
 </div>
 

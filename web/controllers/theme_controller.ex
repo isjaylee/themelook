@@ -17,8 +17,8 @@ defmodule Themelook.ThemeController do
 
   def new(conn, _params) do
     changeset = Theme.changeset(%Theme{categories: [%Category{}]})
-    categories = Repo.all(Category) |> Enum.map(&{&1.name, &1.id})
-    render(conn, "new.html", changeset: changeset, categories: categories, disable_search_form: true)
+    categories = Repo.all(from c in Category, order_by: [asc: c.name])
+    render(conn, "new.html", changeset: changeset, conn: conn, categories: categories, disable_search_form: true)
   end
 
   def create(conn, %{"theme" => theme_params}) do
@@ -32,7 +32,7 @@ defmodule Themelook.ThemeController do
         theme
         |> Repo.preload(:categories)
         |> Ecto.Changeset.change()
-        |> Ecto.Changeset.put_assoc(:categories, Enum.map(theme_params["categories"]["0"]["categories"], fn(x) -> Repo.get(Category, x) end))
+        |> Ecto.Changeset.put_assoc(:categories, Enum.filter(conn.params["categories"], fn({k,v}) -> v == "true" end) |> Enum.map(fn({k,v}) -> Repo.get(Category, k) end))
         |> Repo.update!
 
         theme_with_cats = theme |> Repo.preload(:categories)
@@ -50,18 +50,33 @@ defmodule Themelook.ThemeController do
   end
 
   def edit(conn, %{"id" => id}) do
-    theme = Repo.get(Theme, id) |> Repo.preload([:categories])
-    categories = Repo.all(Category) |> Enum.map(&{&1.name, &1.id})
+    theme = Repo.get(Theme, id) |> Repo.preload(:categories)
+    categories = Repo.all(from c in Category, order_by: [asc: c.name])
     changeset = theme |> Theme.changeset
-    render(conn, "edit.html", changeset: changeset, theme: theme, categories: categories, disable_search_form: true)
+    render(conn, "edit.html", changeset: changeset, theme: theme, conn: conn, categories: categories, disable_search_form: true)
   end
 
   def update(conn, %{"id" => id, "theme" => theme_params}) do
-    theme = Repo.get!(Theme, id)
-    changeset = Theme.changeset(theme, theme_params)
+    if theme_params["image"] != nil do
+      {:ok, url} = ExCloudinary.upload_image(theme_params["image"].path)
+      theme_params = Map.put(theme_params, "image", url.url)
+    end
+    theme = Repo.get!(Theme, id) |> Repo.preload(:categories)
+    changeset = theme |> Theme.changeset(Map.drop(theme_params, ["categories"]))
 
     case Repo.update(changeset) do
       {:ok, theme} ->
+        theme
+        |> Repo.preload(:categories)
+        |> Ecto.Changeset.change()
+        |> Ecto.Changeset.put_assoc(:categories, Enum.filter(conn.params["categories"], fn({k,v}) -> v == "true" end) |> Enum.map(fn({k,v}) -> Repo.get(Category, k) end))
+        |> Repo.update!
+
+        theme_with_cats = theme |> Repo.preload(:categories)
+        category_ids = Enum.reduce(theme_with_cats.categories, [], fn(x,acc) -> acc ++ [x.id] end)
+        put("/themelook/themes/#{theme.id}", [name: theme.name, price: theme.price,
+                                              description: theme.description, publisher: theme.publisher,
+                                              categories: category_ids])
         conn
         |> put_flash(:info, "Theme updated successfully.")
         |> redirect(to: theme_path(conn, :show, theme))
