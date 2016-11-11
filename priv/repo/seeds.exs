@@ -52,5 +52,5 @@ themes = Repo.all(Theme)
 Enum.each(themes, fn(x) ->
   theme = x |> Repo.preload(:categories)
   category_ids = Enum.reduce(theme.categories, [], fn(x,acc) -> acc ++ [x.id] end)
-  put("/themelook/themes/#{theme.id}", [name: theme.name, price: theme.price, description: theme.description, publisher: theme.publisher, categories: category_ids])
+  put("/themelook/themes/#{theme.id}", [name: theme.name, price: Decimal.to_string(theme.price) |> Float.parse |> elem(0), description: theme.description, publisher: theme.publisher, categories: category_ids])
 end)

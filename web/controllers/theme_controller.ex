@@ -37,7 +37,7 @@ defmodule Themelook.ThemeController do
 
         theme_with_cats = theme |> Repo.preload(:categories)
         category_ids = Enum.reduce(theme_with_cats.categories, [], fn(x,acc) -> acc ++ [x.id] end)
-        put("/themelook/themes/#{theme.id}", [name: theme.name, price: theme.price,
+        put("/themelook/themes/#{theme.id}", [name: theme.name, price: Decimal.to_string(theme.price) |> Float.parse |> elem(0),
                                               description: theme.description, publisher: theme.publisher,
                                               categories: category_ids])
         conn
@@ -78,7 +78,7 @@ defmodule Themelook.ThemeController do
           |> Map.keys
           |> Enum.reduce([], fn(x, acc) -> acc ++ [String.to_integer(x)] end)
 
-        put("/themelook/themes/#{theme.id}", [name: theme.name, price: theme.price,
+        put("/themelook/themes/#{theme.id}", [name: theme.name, price: Decimal.to_string(theme.price) |> Float.parse |> elem(0),
                                               description: theme.description, publisher: theme.publisher,
                                               categories: category_ids])
         conn
@@ -91,13 +91,13 @@ defmodule Themelook.ThemeController do
 
   def search_themes(conn, params) do
     categories = Repo.all(Category)
-    query = %{from: 0, size: 20, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{"price.coef": %{gte: nil, lte: nil}}}}}}}}
+    query = %{from: 0, size: 20, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
     search_params = []
     if params["search_themes"]["name"] != "", do: search_params = search_params ++ [%{ "match": %{ "name": %{"query": params["search_themes"]["name"], "fuzziness": 2}}}]
     if params["search_themes"]["publisher"] != "", do: search_params = search_params ++ [%{ "match": %{ "publisher": %{"query": params["search_themes"]["publisher"], "fuzziness": 2}}}]
     query = put_in(query, [:query, :bool, :must], search_params)
-    if params["search_themes"]["max"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :"price.coef", :lte], params["search_themes"]["max"])
-    if params["search_themes"]["min"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :"price.coef", :gte], params["search_themes"]["min"])
+    if params["search_themes"]["max"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :lte], params["search_themes"]["max"])
+    if params["search_themes"]["min"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :gte], params["search_themes"]["min"])
     category_ids = Enum.filter(params["categories"], fn({k,v}) -> v == "true" end) |> Enum.into(%{}) |> Map.keys
     if category_ids != [], do: query = put_in(query, [:query, :bool, :filter, :bool, :should], %{terms: %{categories: category_ids}})
     if params["search_themes"]["framework_id"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :must], %{terms: %{categories: [params["search_themes"]["framework_id"]]}})
