@@ -1,6 +1,6 @@
 <script>
   window.Themelook = window.Themelook || {};
-  window.Themelook.theme = '<%= Poison.encode!(@theme) |> raw %>';' %>'
+  window.Themelook.theme = '<%= Poison.encode!(@theme) |> escape_javascript |> raw %>'
   window.Themelook.categories = '<%= Poison.encode!(@categories) |> escape_javascript |> raw %>';
 </script>
 <script src="<%= static_path(@conn, "/js/themelook.module.js") %>"></script>

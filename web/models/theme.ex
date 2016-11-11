@@ -12,7 +12,7 @@ defmodule Themelook.Theme do
     field :image, :string
     field :theme_link, :string
     field :demo_link, :string
-    field :price, :integer
+    field :price, :decimal
     many_to_many :categories, Category, join_through: ThemesCategories, on_replace: :delete
 
     timestamps
