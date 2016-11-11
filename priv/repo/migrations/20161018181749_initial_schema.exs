@@ -10,7 +10,7 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
     create table(:themes) do
       add :name,         :string
       add :publisher,    :string
-      add :description,  :string
+      add :description,  :text
       add :price,        :integer
       add :theme_link,   :string
       add :demo_link,    :string

@@ -1,8 +1,8 @@
 defmodule Themelook.ThemeController do
   use Themelook.Web, :controller
   alias Themelook.{Repo, Theme, Category}
-  plug Coherence.Authentication.Session, [protected: true] when action in [:new, :create, :edit, :update, :delete]
-  plug :disable_sidebar when action in [:index, :new, :create, :edit, :update]
+  plug Coherence.Authentication.Session, [protected: true] when not action in [:show]
+  plug :disable_sidebar when action in [:index, :new, :edit]
 
   def index(conn, _params) do
     themes = Repo.all(from t in Theme, order_by: [desc: t.id]) |> Repo.preload(:categories)
