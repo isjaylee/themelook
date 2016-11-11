@@ -1,7 +1,7 @@
 defmodule Themelook.ThemeController do
   use Themelook.Web, :controller
   alias Themelook.{Repo, Theme, Category}
-  plug Coherence.Authentication.Session, [protected: true] when not action in [:show]
+  plug Coherence.Authentication.Session, [protected: true] when not action in [:show, :search_themes]
   plug :disable_sidebar when action in [:index, :new, :edit]
 
   def index(conn, _params) do
