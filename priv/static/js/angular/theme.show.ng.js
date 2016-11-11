@@ -13,7 +13,7 @@
       vm.listCategories = listCategories;
 
       function formatPrice(price) {
-        if (price === 0) {
+        if (price === "0") {
           return 'Free';
         } else {
           return accounting.formatMoney(price);

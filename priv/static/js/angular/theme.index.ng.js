@@ -14,7 +14,7 @@
 
       function formatPrice() {
         _.each(vm.themes, function(theme){
-          if (theme.price === 0) {
+          if (theme.price === "0") {
             theme.price = "Free";
           } else {
             theme.price = accounting.formatMoney(theme.price);
