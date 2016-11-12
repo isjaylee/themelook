@@ -42,7 +42,7 @@ defmodule Themelook.ThemeController do
                                               categories: category_ids])
         conn
         |> put_flash(:info, "Created successfully.")
-        |> redirect(to: category_path(conn, :index))
+        |> redirect(to: theme_path(conn, :show, theme))
       {:error, changeset} ->
         conn
         render(conn, "new.html", changeset: changeset)
