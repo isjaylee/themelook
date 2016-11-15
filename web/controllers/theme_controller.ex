@@ -26,7 +26,7 @@ defmodule Themelook.ThemeController do
       {:ok, url} = ExCloudinary.upload_image(theme_params["image"].path)
       theme_params = Map.put(theme_params, "image", url.url)
     end
-    changeset = %Theme{} |> Theme.changeset(Map.drop(theme_params, ["categories"]))
+    changeset = %Theme{} |> Theme.changeset(Map.merge(theme_params, %{"added_by" => conn.assigns.current_user.email}))
     case Repo.insert(changeset) do
       {:ok, theme} ->
         theme

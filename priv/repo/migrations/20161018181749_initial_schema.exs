@@ -15,6 +15,7 @@ defmodule Themelook.Repo.Migrations.InitialSchema do
       add :theme_link,   :string
       add :demo_link,    :string
       add :image,        :string
+      add :added_by,     :string
       timestamps
     end
 
