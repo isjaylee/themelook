@@ -17,6 +17,7 @@ defmodule Themelook.Api.V1.ThemeView do
       publisher: theme.publisher,
       price: theme.price,
       categories: theme.categories,
+      image: theme.image,
     }
   end
 end
