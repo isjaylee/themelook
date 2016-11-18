@@ -5,13 +5,13 @@
         <!-- Main Menu start -->
         <div class="main-menu-area megamenu-active">
           <!-- Logo Start -->
-          <div class="col-md-7">
+          <div class="col-md-4">
             <div class="site-logo">
               <h1><%= link "Themelook", to: category_path(@conn, :index) %></h1>
             </div>
           </div>
           <!-- Logo Start -->
-          <div class="col-md-13 text-right">
+          <div class="col-md-16 text-right">
             <div class="mainmenu">
               <div class="navbar-collapse collapse">
                 <ul id="nav" class="nav navbar-nav">
@@ -33,6 +33,9 @@
                     </ul>
                   </li>
                   <li><%= link "About", to: page_path(@conn, :about) %></li>
+                  <li>
+                    <a href="http://blog.themelook.com">Blog</a>
+                  </li>
                   <%= if @current_user && @current_user.role == "Admin" do %>
                     <li>
                       <%= link "Manage Themes", to: theme_path(@conn, :index), class: "nav-link" %>
@@ -41,9 +44,6 @@
                       <%= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>
                     </li>
                   <% end %>
-                  <li>
-                    <a href="http://blog.themelook.com">Blog</a>
-                  </li>
                 </ul>
               </div>
             </div>
