@@ -29,7 +29,7 @@ defmodule Themelook.Api.V1.ThemeController do
   def search_themes(conn, params) do
     categories = Repo.all(Category)
     offset = if is_nil(params["offset"]), do: 0, else: params["offset"]
-    query = %{from: offset, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
+    query = %{from: offset, size: Repo.all(Theme) |> Kernel.length, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
     search_params = []
     if params["search_themes"]["name"] != "", do: search_params = search_params ++ [%{ "match": %{ "name": %{"query": params["search_themes"]["name"], "fuzziness": 2}}}]
     if params["search_themes"]["publisher"] != "", do: search_params = search_params ++ [%{ "match": %{ "publisher": %{"query": params["search_themes"]["publisher"], "fuzziness": 2}}}]
