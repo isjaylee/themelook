@@ -10,6 +10,7 @@
       return {
         getAll: getAll,
         loadMore: loadMore,
+        sort: sort,
         searchLoadMore: searchLoadMore
       };
 
@@ -27,6 +28,13 @@
         return $http({
           method: 'GET',
           url: _url() + `?offset=${offset}`
+        }).then(_success);
+      }
+
+      function sort(sortBy, params, limit) {
+        return $http({
+          method: 'GET',
+          url: `api/v1/search_themes?${params}&sort=${sortBy}&count=${limit}`
         }).then(_success);
       }
 

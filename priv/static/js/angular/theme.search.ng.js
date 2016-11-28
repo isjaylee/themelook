@@ -26,27 +26,12 @@
 
       function sortThemes(sort){
         vm.sortBy = sort;
-        switch(sort) {
-        case 'Price - High to Low':
-          vm.themes = _.sortBy(vm.themes, function(theme) { return -theme.price } );
-          break;
-        case 'Price - Low to High':
-          vm.themes = _.sortBy(vm.themes, function(theme) { return theme.price } );
-          break;
-        case 'Newest':
-          vm.themes = _.sortBy(vm.themes, function(theme) {
-            var date = new Date(theme.inserted_at);
-            return -date;
-          });
-          break;
-        case 'Oldest':
-          vm.themes = _.sortBy(vm.themes, function(theme) {
-            var date = new Date(theme.inserted_at);
-            return date;
-          });
-
-          break;
-        }
+        var params = $httpParamSerializerJQLike(vm.searchParams); // Serialize params
+        Theme.sort(sort, params, vm.themes.length).then(
+          function success(response) {
+            vm.themes = response;
+          }
+        );
       }
 
       function loadMore(offset) {
