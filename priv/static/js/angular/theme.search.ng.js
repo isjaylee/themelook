@@ -36,7 +36,7 @@
 
       function loadMore(offset) {
         var params = $httpParamSerializerJQLike(vm.searchParams); // Serialize params
-        Theme.searchLoadMore(offset, params, vm.themes.length).then(
+        Theme.searchLoadMore(vm.sortBy, offset, params, vm.themes.length).then(
           function success(response){
             vm.themes = vm.themes.concat(response);
 

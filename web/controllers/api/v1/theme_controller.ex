@@ -29,7 +29,7 @@ defmodule Themelook.Api.V1.ThemeController do
   def search_themes(conn, params) do
     categories = Repo.all(Category)
     offset = if is_nil(params["offset"]), do: 0, else: params["offset"]
-    query = %{from: offset, size: Repo.all(Theme) |> Kernel.length, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
+    query = %{size: Repo.all(Theme) |> Kernel.length, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
     search_params = []
     if params["search_themes"]["name"] != "", do: search_params = search_params ++ [%{ "match": %{ "name": %{"query": params["search_themes"]["name"], "fuzziness": 2}}}]
     if params["search_themes"]["publisher"] != "", do: search_params = search_params ++ [%{ "match": %{ "publisher": %{"query": params["search_themes"]["publisher"], "fuzziness": 2}}}]
@@ -43,16 +43,16 @@ defmodule Themelook.Api.V1.ThemeController do
     {:ok, code, response} = post("/themelook/themes/_search", [], Poison.encode!(query))
 
     theme_ids = response.hits.hits |> Enum.map(& &1[:_id])
-    themes = get_themes_by_order(params["sort"], theme_ids, params["count"])
+    themes = get_themes_by_order(params["sort"], theme_ids, params["count"], offset)
     render(conn, "search.json", themes: themes, categories: categories, disable_sidebar: true)
   end
 
-  def get_themes_by_order(order, theme_ids, count) do
+  def get_themes_by_order(order, theme_ids, count, offset) do
     case order do
-      "Price - Low to High" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.price],        preload: :categories, limit: ^count)
-      "Price - High to Low" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.price],       preload: :categories, limit: ^count)
-      "Oldest"              -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.inserted_at],  preload: :categories, limit: ^count)
-      _                     -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.inserted_at], preload: :categories, limit: ^count)
+      "Price - Low to High" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.price],        preload: :categories, limit: ^count, offset: ^offset)
+      "Price - High to Low" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.price],       preload: :categories, limit: ^count, offset: ^offset)
+      "Oldest"              -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.inserted_at],  preload: :categories, limit: ^count, offset: ^offset)
+      _                     -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.inserted_at], preload: :categories, limit: ^count, offset: ^offset)
     end
   end
 end

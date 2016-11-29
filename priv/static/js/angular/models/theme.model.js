@@ -38,10 +38,10 @@
         }).then(_success);
       }
 
-      function searchLoadMore(offset, searchParams, limit) {
+      function searchLoadMore(sortBy, offset, searchParams, limit) {
         return $http({
           method: 'GET',
-          url: `/api/v1/search_themes?${searchParams}&offset=${offset}&count=${limit}`
+          url: `/api/v1/search_themes?${searchParams}&sort=${sortBy}&offset=${offset}&count=${limit}`
         }).then(_success);
       }
       /*----------------------------------------------------------------------------------------------
