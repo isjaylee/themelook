@@ -9,10 +9,10 @@ defmodule Themelook.Application do
 
   def call(conn, repo) do
     cat_query = from c in Category,
-      where: not c.name in ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop"],
+      where: not c.name in ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop", "WooCommerce", "Magento"],
       order_by: c.name
     framework_query = from c in Category,
-      where: c.name in ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop"],
+      where: c.name in ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop", "WooCommerce", "Magento"],
       order_by: c.name
     home_categories = Repo.all(cat_query)
     frameworks = Repo.all(framework_query)
