@@ -59,7 +59,7 @@ defmodule Themelook.Router do
       scope "/v1", V1, as: :v1 do
         resources "/themes", ThemeController
         get "/search_themes", ThemeController, :search_themes
-        get "/categories", CategoryController, :index
+        resources "/categories", CategoryController, only: [:index, :show]
       end
     end
   end

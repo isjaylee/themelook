@@ -5,10 +5,8 @@ defmodule Themelook.Api.V1.CategoryView do
     render_many(categories, Themelook.Api.V1.CategoryView, "category.json")
   end
 
-  def render("category.json", %{category: category}) do
-    %{
-      id: category.id,
-      name: category.name,
-    }
+  def render("show.json", %{themes: themes}) do
+    render_many(themes, Themelook.Api.V1.ThemeView, "theme.json")
   end
+
 end

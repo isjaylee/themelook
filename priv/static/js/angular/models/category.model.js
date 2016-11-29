@@ -8,7 +8,8 @@
       $log.info('{Model} Defining the Category model.');
 
       return {
-        getAll:  getAll
+        getAll:  getAll,
+        loadMore: loadMore
       };
 
       /*----------------------------------------------------------------------------------------------
@@ -21,6 +22,12 @@
         }).then(_success);
       }
 
+      function loadMore(category, offset) {
+        return $http({
+          method: 'GET',
+          url: _url(category) + `?offset=${offset}`
+        }).then(_success);
+      }
       /*----------------------------------------------------------------------------------------------
       /*----------------------------------------------------------------------------------------------
        * HELPER METHODS
@@ -31,8 +38,14 @@
         return response.data;
       }
 
-      function _url() {
-        return '/api/v1/categories';
+      function _url(category) {
+        var baseUrl = '/api/v1/categories';
+
+        if(_.isEmpty(category)) {
+          return baseUrl;
+        } else {
+          return baseUrl + '/' + category.id; 
+        }
       }
 
   }]);

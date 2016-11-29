@@ -14,10 +14,6 @@
       vm.loadMore = loadMore;
       vm.showLoadMore = true;
 
-      var themeCount = parseInt($window.Themelook.themeCount);
-
-      initialLoad();
-
       function formatPrice(price) {
         if (price === "0") {
           return 'Free';
@@ -56,18 +52,11 @@
           function success(response){
             vm.themes = vm.themes.concat(response);
 
-            if (themeCount === vm.themes.length) {
+            if (response.length < 16) {
               vm.showLoadMore = false;
             }
           }
         );
-      }
-
-      function initialLoad() {
-        if (themeCount === vm.themes.length) {
-          vm.showLoadMore = false;
-        }
-        return vm.showLoadMore;
       }
 
     }]);

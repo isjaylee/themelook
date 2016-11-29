@@ -13,6 +13,8 @@
       vm.formatPrice = formatPrice;
       vm.sortThemes = sortThemes;
       vm.sortBy = 'Newest';
+      vm.loadMore = loadMore;
+      vm.showLoadMore = true;
 
       function formatPrice(price) {
         if (price === "0") {
@@ -45,6 +47,18 @@
 
           break;
         }
+      }
+
+      function loadMore(offset) {
+        Category.loadMore(vm.category, offset).then(
+          function success(response){
+            vm.themes = vm.themes.concat(response);
+
+            if (response.length < 16) {
+              vm.showLoadMore = false;
+            }
+          }
+        );
       }
 
     }]);
