@@ -105,7 +105,7 @@ defmodule Themelook.ThemeController do
     {:ok, code, response} = post("/themelook/themes/_search", [], Poison.encode!(query))
 
     theme_ids = response.hits.hits |> Enum.map(& &1[:_id])
-    themes = Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.inserted_at], preload: :categories)
+    themes = Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.inserted_at], preload: :categories, limit: 20)
     render(conn, "search.html", themes: themes, categories: categories, search_params: params, disable_sidebar: true)
   end
 
