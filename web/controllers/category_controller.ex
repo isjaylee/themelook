@@ -16,7 +16,7 @@ defmodule Themelook.CategoryController do
   def show(conn, %{"id" => id}) do
     categories = Repo.all(Category)
     category = Repo.get(Category, id)
-    themes = Repo.all(from t in assoc(category, :themes), preload: :categories, limit: 16)
+    themes = Repo.all(from t in assoc(category, :themes), order_by: [desc: t.inserted_at], preload: :categories, limit: 16)
     render(conn, "show.html",
       themes: themes,
       categories: categories,

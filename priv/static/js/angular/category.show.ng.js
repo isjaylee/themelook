@@ -26,31 +26,40 @@
 
       function sortThemes(sort){
         vm.sortBy = sort;
-        switch(sort) {
-        case 'Price - High to Low':
-          vm.themes = _.sortBy(vm.themes, function(theme) { return -theme.price } );
-          break;
-        case 'Price - Low to High':
-          vm.themes = _.sortBy(vm.themes, function(theme) { return theme.price } );
-          break;
-        case 'Newest':
-          vm.themes = _.sortBy(vm.themes, function(theme) {
-            var date = new Date(theme.inserted_at);
-            return -date;
-          });
-          break;
-        case 'Oldest':
-          vm.themes = _.sortBy(vm.themes, function(theme) {
-            var date = new Date(theme.inserted_at);
-            return date;
-          });
-
-          break;
-        }
+        Category.sort(sort, vm.category, vm.themes.length).then(
+          function success(response) {
+            vm.themes = response;
+          }
+        );
       }
 
+      // function sortThemes(sort){
+      //   vm.sortBy = sort;
+      //   switch(sort) {
+      //   case 'Price - High to Low':
+      //     vm.themes = _.sortBy(vm.themes, function(theme) { return -theme.price } );
+      //     break;
+      //   case 'Price - Low to High':
+      //     vm.themes = _.sortBy(vm.themes, function(theme) { return theme.price } );
+      //     break;
+      //   case 'Newest':
+      //     vm.themes = _.sortBy(vm.themes, function(theme) {
+      //       var date = new Date(theme.inserted_at);
+      //       return -date;
+      //     });
+      //     break;
+      //   case 'Oldest':
+      //     vm.themes = _.sortBy(vm.themes, function(theme) {
+      //       var date = new Date(theme.inserted_at);
+      //       return date;
+      //     });
+
+      //     break;
+      //   }
+      // }
+
       function loadMore(offset) {
-        Category.loadMore(vm.category, offset).then(
+        Category.loadMore(vm.sortBy, vm.category, offset).then(
           function success(response){
             vm.themes = vm.themes.concat(response);
 

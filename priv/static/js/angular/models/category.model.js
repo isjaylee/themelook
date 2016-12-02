@@ -9,7 +9,8 @@
 
       return {
         getAll:  getAll,
-        loadMore: loadMore
+        loadMore: loadMore,
+        sort: sort
       };
 
       /*----------------------------------------------------------------------------------------------
@@ -22,10 +23,17 @@
         }).then(_success);
       }
 
-      function loadMore(category, offset) {
+      function loadMore(sortBy, category, offset) {
         return $http({
           method: 'GET',
-          url: _url(category) + `?offset=${offset}`
+          url: _url(category) + `?sort=${sortBy}&offset=${offset}&count=16`
+        }).then(_success);
+      }
+
+      function sort(sortBy, category, limit) {
+        return $http({
+          method: 'GET',
+          url: _url(category) + `?sort=${sortBy}&count=${limit}`
         }).then(_success);
       }
       /*----------------------------------------------------------------------------------------------
@@ -44,7 +52,7 @@
         if(_.isEmpty(category)) {
           return baseUrl;
         } else {
-          return baseUrl + '/' + category.id; 
+          return baseUrl + '/' + category.id;
         }
       }
 
