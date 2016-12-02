@@ -24,10 +24,10 @@
         }).then(_success);
       }
 
-      function loadMore(offset) {
+      function loadMore(sortBy, offset) {
         return $http({
           method: 'GET',
-          url: _url() + `?offset=${offset}`
+          url: _url() + `?offset=${offset}&sort=${sortBy}&count=16`
         }).then(_success);
       }
 

@@ -33,31 +33,6 @@
         );
       }
 
-      // function sortThemes(sort){
-      //   vm.sortBy = sort;
-      //   switch(sort) {
-      //   case 'Price - High to Low':
-      //     vm.themes = _.sortBy(vm.themes, function(theme) { return -theme.price } );
-      //     break;
-      //   case 'Price - Low to High':
-      //     vm.themes = _.sortBy(vm.themes, function(theme) { return theme.price } );
-      //     break;
-      //   case 'Newest':
-      //     vm.themes = _.sortBy(vm.themes, function(theme) {
-      //       var date = new Date(theme.inserted_at);
-      //       return -date;
-      //     });
-      //     break;
-      //   case 'Oldest':
-      //     vm.themes = _.sortBy(vm.themes, function(theme) {
-      //       var date = new Date(theme.inserted_at);
-      //       return date;
-      //     });
-
-      //     break;
-      //   }
-      // }
-
       function loadMore(offset) {
         Category.loadMore(vm.sortBy, vm.category, offset).then(
           function success(response){

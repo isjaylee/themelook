@@ -10,7 +10,8 @@
       return {
         getAll:  getAll,
         loadMore: loadMore,
-        sort: sort
+        sort: sort,
+        indexPageSort
       };
 
       /*----------------------------------------------------------------------------------------------
@@ -34,6 +35,13 @@
         return $http({
           method: 'GET',
           url: _url(category) + `?sort=${sortBy}&count=${limit}`
+        }).then(_success);
+      }
+
+      function indexPageSort(sortBy, limit) {
+        return $http({
+          method: 'GET',
+          url: `/api/v1/themes?sort=${sortBy}&count=${limit}`
         }).then(_success);
       }
       /*----------------------------------------------------------------------------------------------
