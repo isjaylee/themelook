@@ -49,19 +49,19 @@ defmodule Themelook.Api.V1.ThemeController do
 
   def get_themes_by_order(order, theme_ids, count, offset) do
     case order do
-      "Price - Low to High" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.price],        preload: :categories, limit: ^count, offset: ^offset)
-      "Price - High to Low" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.price],       preload: :categories, limit: ^count, offset: ^offset)
-      "Oldest"              -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.inserted_at],  preload: :categories, limit: ^count, offset: ^offset)
-      _                     -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.inserted_at], preload: :categories, limit: ^count, offset: ^offset)
+      "Price - Low to High" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.price, asc: t.id],   preload: :categories, limit: ^count, offset: ^offset)
+      "Price - High to Low" -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.price, desc: t.id], preload: :categories, limit: ^count, offset: ^offset)
+      "Oldest"              -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [asc: t.inserted_at],        preload: :categories, limit: ^count, offset: ^offset)
+      _                     -> Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.inserted_at],       preload: :categories, limit: ^count, offset: ^offset)
     end
   end
 
   def get_themes_by_order(order, count, offset) do
     case order do
-      "Price - Low to High" -> Repo.all(from t in Theme, order_by: [asc: t.price],        preload: :categories, limit: ^count, offset: ^offset)
-      "Price - High to Low" -> Repo.all(from t in Theme, order_by: [desc: t.price],       preload: :categories, limit: ^count, offset: ^offset)
-      "Oldest"              -> Repo.all(from t in Theme, order_by: [asc: t.inserted_at],  preload: :categories, limit: ^count, offset: ^offset)
-      _                     -> Repo.all(from t in Theme, order_by: [desc: t.inserted_at], preload: :categories, limit: ^count, offset: ^offset)
+      "Price - Low to High" -> Repo.all(from t in Theme, order_by: [asc: t.price, asc: t.id],   preload: :categories, limit: ^count, offset: ^offset)
+      "Price - High to Low" -> Repo.all(from t in Theme, order_by: [desc: t.price, desc: t.id], preload: :categories, limit: ^count, offset: ^offset)
+      "Oldest"              -> Repo.all(from t in Theme, order_by: [asc: t.inserted_at],        preload: :categories, limit: ^count, offset: ^offset)
+      _                     -> Repo.all(from t in Theme, order_by: [desc: t.inserted_at],       preload: :categories, limit: ^count, offset: ^offset)
     end
   end
 end
