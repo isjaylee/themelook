@@ -1,0 +1,11 @@
+<script>
+  window.Themelook = window.Themelook || {};
+  window.Themelook.categories = '<%= Poison.encode!(@categories) |> escape_javascript |> raw %>';
+</script>
+
+<script src="<%= static_path(@conn, "/js/themelook.module.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/angular/submit_theme.ng.js") %>"></script>
+
+<div data-ng-app="themelook" data-ng-controller="SubmitThemeController as vm">
+  <div data-ng-include="'<%= static_path(@conn, "/js/angular/page/submit_theme.html") %>'"></div>
+</div>

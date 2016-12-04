@@ -3,9 +3,9 @@
 
   angular.module('themelook').controller('ThemeSearchController', [
     '$http', '$window', '$httpParamSerializerJQLike',
-    'Theme', 'Category',
+    'Theme',
 
-    function($http, $window, $httpParamSerializerJQLike, Theme, Category){
+    function($http, $window, $httpParamSerializerJQLike, Theme){
       var vm = this;
       vm.themes = JSON.parse($window.Themelook.themes);
       vm.categories = JSON.parse($window.Themelook.categories);

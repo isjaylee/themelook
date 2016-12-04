@@ -1,0 +1,95 @@
+<div class="contact-form">
+  <div class="container">
+    <div class="row" data-ng-if="vm.showSubmitMsg">
+      <div class="col-md-20">
+        <h2>Your theme has been submitted.</h2>
+        <a href="" data-ng-click="vm.showSubmitMsg = false" class="btn btn-primary">Submit another?</a>
+      </div>
+    </div>
+    <div data-ng-if="!vm.showSubmitMsg">
+      <div class="row">
+        <div class="col-md-20">
+          <h2>Submit a Theme</h2>
+          <p>
+            Every submission is reviewed for quality: design, pageload times, responsiveness, etc.
+            Once approved, the submitted theme will be listed on Themelook.
+          </p>
+          <p>Submissions do not have to be your own theme. If there's a theme you think is awesome,
+            submit it and let us know!</p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <form data-ng-submit="vm.submitForm(params)">
+          <div class="row">
+            <div class="col-md-10">
+              <div class="form-group">
+                <label>Your Email</label>
+                <input class="form-control" data-ng-model="params.email">
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input class="form-control" data-ng-model="params.yourname">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="form-title">
+            <h4 class="form-title-text">Theme Info</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-10">
+              <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" data-ng-model="params.name" placeholder="Divi">
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group">
+                <label>Publisher</label>
+                <input class="form-control" data-ng-model="params.publisher" placeholder="Elegant Themes">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label>Info Link</label>
+                <input class="form-control" data-ng-model="params.info" placeholder="www.elegantthemes.com">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label>Demo Link</label>
+                <input class="form-control" data-ng-model="params.demo" placeholder="www.elegantthemes.com/demo">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Price</label>
+                <input class="form-control" data-ng-model="params.price" placeholder="68">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" rows="10" data-ng-model="params.description"></textarea>
+          </div>
+          <label>Select the theme's categories</label>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-4" data-ng-repeat="category in vm.categories">
+                <label class="checkbox-inline">
+                  <input type="checkbox" data-ng-model="params.categories[category.name]">{{category.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Theme</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

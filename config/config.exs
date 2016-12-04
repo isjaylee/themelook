@@ -44,3 +44,8 @@ config :ex_cloudinary,
   api_key: "656544924167844",
   api_secret: "DrgmAeKGD_SljVBTC_aljs7GEH4",
   cloud_name: "themelook"
+
+config :themelook, Themelook.Mailer,
+  adapter: Bamboo.MailgunAdapter,
+  api_key: System.get_env("MAILGUN_KEY"),
+  domain: "themelook.com"

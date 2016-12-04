@@ -33,9 +33,8 @@
                     </ul>
                   </li>
                   <li><%= link "About", to: page_path(@conn, :about) %></li>
-                  <li>
-                    <a href="http://blog.themelook.com">Blog</a>
-                  </li>
+                  <li> <a href="http://blog.themelook.com">Blog</a> </li>
+                  <li><%= link "Submit a Theme", to: page_path(@conn, :submit_theme) %></li>
                   <%= if @current_user && @current_user.role == "Admin" do %>
                     <li>
                       <%= link "Manage Themes", to: theme_path(@conn, :index), class: "nav-link" %>

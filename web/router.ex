@@ -39,14 +39,15 @@ defmodule Themelook.Router do
 
   scope "/", Themelook do
     pipe_through :browser
-    get "/", CategoryController, :index
-    get "/about", PageController, :about
-    get "/privacy", PageController, :privacy
-    get "/terms", PageController, :terms
-    get "/logout", ThemeController, :logout
-    get "/search", ThemeController, :search_themes
-    resources "/themes", ThemeController
-    resources "/categories", CategoryController, only: [:index, :show]
+    get "/",                   CategoryController, :index
+    get "/about",              PageController, :about
+    get "/privacy",            PageController, :privacy
+    get "/terms",              PageController, :terms
+    get "/submit_theme",       PageController, :submit_theme
+    get "/logout",             ThemeController, :logout
+    get "/search",             ThemeController, :search_themes
+    resources "/themes",       ThemeController
+    resources "/categories",   CategoryController, only: [:index, :show]
   end
 
   scope "/", Themelook do
@@ -58,8 +59,9 @@ defmodule Themelook.Router do
     scope "/api", Api, as: :api  do
       scope "/v1", V1, as: :v1 do
         resources "/themes", ThemeController
-        get "/search_themes", ThemeController, :search_themes
         resources "/categories", CategoryController, only: [:index, :show]
+        get "/search_themes", ThemeController, :search_themes
+        post "/send_submit",       PageController, :send_submit
       end
     end
   end

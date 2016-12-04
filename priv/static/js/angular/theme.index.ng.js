@@ -3,11 +3,10 @@
 
   angular.module('themelook').controller('ThemeController',[
     '$http', '$window',
-    'Theme', 'Category',
+    'Theme',
 
-    function($http, $window, Theme, Category) {
+    function($http, $window, Theme) {
       var vm = this;
-      vm.categories = [];
       vm.themes = JSON.parse($window.Themelook.themes);
 
       formatPrice();
