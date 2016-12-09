@@ -24,7 +24,7 @@
               <a data-ng-href="{{vm.theme.demo_link}}" target="_blank" class="btn btn-primary btn-sm">View Demo</a>
               <a data-ng-href="{{vm.theme.theme_link}}" target="_blank" class="btn btn-primary btn-sm">Theme Site</a>
               <hr>
-              <p>{{vm.theme.description}}</p>
+              <p data-ng-bind-html="vm.theme.description|formatHtml"></p>
             </div>
           </div>
         </div>

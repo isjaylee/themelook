@@ -4,6 +4,7 @@
   window.Themelook.categories = '<%= Poison.encode!(@categories) |> escape_javascript |> raw %>';
 </script>
 <script src="<%= static_path(@conn, "/js/themelook.module.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/themelook.directives.js") %>"></script>
 <script src="<%= static_path(@conn, "/js/angular/models/category.model.js") %>"></script>
 <script src="<%= static_path(@conn, "/js/angular/models/theme.model.js") %>"></script>
 <script src="<%= static_path(@conn, "/js/angular/theme.show.ng.js") %>"></script>
