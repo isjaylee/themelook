@@ -36,7 +36,9 @@
     <div class="row">
       <%= for category <- @categories do %>
         <div class="col-md-4">
-          <%= checkbox :categories, "#{category.id}", [value: category.name, checked: form_active_checkbox(@conn, category.id)]  %> <%= category.name %>
+          <label class="checkbox-inline">
+            <%= checkbox :categories, "#{category.id}", [value: category.name, checked: form_active_checkbox(@conn, category.id)]  %> <%= category.name %>
+          </label>
         </div>
       <% end %>
     </div>
