@@ -37,6 +37,9 @@
                   <li><%= link "Submit a Theme", to: page_path(@conn, :submit_theme) %></li>
                   <%= if @current_user && @current_user.role == "Admin" do %>
                     <li>
+                      <%= link "Add Theme", to: theme_path(@conn, :new), class: "nav-link" %>
+                    </li>
+                    <li>
                       <%= link "Manage Themes", to: theme_path(@conn, :index), class: "nav-link" %>
                     </li>
                     <li>
