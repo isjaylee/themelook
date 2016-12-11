@@ -23,7 +23,7 @@
                 <p class="special-price"><span class="price">{{vm.formatPrice(vm.theme.price)}}</span></p>
               </div>
               <a data-ng-href="{{vm.theme.demo_link}}" target="_blank" class="btn btn-primary btn-sm">View Demo</a>
-              <a data-ng-href="{{vm.theme.theme_link}}" target="_blank" class="btn btn-primary btn-sm">Theme Sihe</a>
+              <a data-ng-href="{{vm.theme.theme_link}}" target="_blank" class="btn btn-primary btn-sm">Theme Site</a>
               <hr>
               <p data-ng-bind-html="vm.theme.description|formatHtml"></p>
             </div>
@@ -51,6 +51,15 @@
             <p class="tagcloud">
               <a href="/categories/{{category.id}}" data-ng-repeat="category in vm.theme.categories">{{category.name}}</a>
             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-20">
+        <div class="details">
+          <div class="product-menu">
+            <p>Theme doesn't work? Info needs to be updated? <a href="mailto:themelooksite@gmail.com?subject=About%20{{vm.theme.name}}%20theme%20on%20Themelook.com" class="btn btn-info btn-sm">Let us know!</a></p>
           </div>
         </div>
       </div>
