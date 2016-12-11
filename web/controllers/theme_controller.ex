@@ -94,7 +94,7 @@ defmodule Themelook.ThemeController do
     query = %{from: 0, size: Repo.all(Theme) |> Kernel.length, query: %{bool: %{must: [], filter: %{bool: %{must: nil, should: nil, filter: %{range: %{price: %{gte: nil, lte: nil}}}}}}}}
     search_params = []
     if params["search_themes"]["name"] != "", do: search_params = search_params ++ [%{ "match": %{ "name": %{"query": params["search_themes"]["name"], "fuzziness": 2}}}]
-    if params["search_themes"]["publisher"] != "", do: search_params = search_params ++ [%{ "match": %{ "publisher": %{"query": params["search_themes"]["publisher"], "fuzziness": 2}}}]
+    if params["search_themes"]["publisher"] != "", do: search_params = search_params ++ [%{ "match_phrase": %{ "publisher":  params["search_themes"]["publisher"]}}]
     query = put_in(query, [:query, :bool, :must], search_params)
     if params["search_themes"]["max"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :lte], params["search_themes"]["max"])
     if params["search_themes"]["min"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :gte], params["search_themes"]["min"])
