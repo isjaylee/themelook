@@ -23,7 +23,8 @@ User.changeset(%User{}, %{name: "Bob", email: "bob@example.com", password: "pass
 |> Repo.insert!
 
 for category <- ["Restaurant", "Home Improvement", "Health & Beauty", "Blog", "Business", "Fashion", "Photography", "Multipurpose", "News & Magazine",
-"Travel & Hotels", "Wedding", "Real Estate", "Nonprofit", "Admin", "Wordpress", "Shopify", "HTML", "Opencart", "Prestashop"] do
+                "Travel & Hotels", "Wedding", "Real Estate", "Nonprofit", "Admin", "Wordpress", "Shopify", "HTML", "Opencart", "Prestashop", "Personal", "Tumblr",
+                "BigCommerce"] do
   Repo.insert!(%Category{name: category})
 end
 
