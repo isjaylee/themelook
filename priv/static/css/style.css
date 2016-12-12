@@ -1187,11 +1187,12 @@ p.special-price {
 .special {
     background: none repeat scroll 0 0 #fff;
     display: inline-block;
-    left: 0;
+    right: 0;
     padding: 3px 15px;
     position: absolute;
-    top: 50px;
+    bottom: 12px;
     z-index: 99;
+    font-size: 12px;
 }
 
 .special p {

@@ -7,6 +7,7 @@
 
     function($http, $window, Theme, Category){
       var vm = this;
+      var frameworks = ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop", "WooCommerce", "Magento", "BigCommerce", "Tumblr"];
       vm.themes = JSON.parse($window.Themelook.themes);
       vm.category = JSON.parse($window.Themelook.category);
       vm.categories = JSON.parse($window.Themelook.categories);
@@ -15,6 +16,17 @@
       vm.sortBy = 'Newest';
       vm.loadMore = loadMore;
       vm.showLoadMore = true;
+
+      setThemeFramework();
+
+      function setThemeFramework() {
+        _.each(vm.themes, function(theme) {
+          var themeCategories = _.map(theme.categories, 'name');
+          var a = _.intersection(themeCategories, frameworks);
+          theme['framework'] = a[0];
+        });
+        return vm.themes;
+      }
 
       function formatPrice(price) {
         if (price === "0") {
@@ -29,6 +41,7 @@
         Category.sort(sort, vm.category, vm.themes.length).then(
           function success(response) {
             vm.themes = response;
+            setThemeFramework();
           }
         );
       }
@@ -41,6 +54,7 @@
             if (response.length < 16) {
               vm.showLoadMore = false;
             }
+            setThemeFramework();
           }
         );
       }
