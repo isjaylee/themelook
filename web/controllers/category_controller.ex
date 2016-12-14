@@ -2,7 +2,7 @@ defmodule Themelook.CategoryController do
   use Themelook.Web, :controller
   alias Themelook.{Repo, Theme, Category}
 
-  def index(conn, params) do
+  def index(conn, _params) do
     categories = Repo.all(Category)
     themes = Repo.all(from t in Theme, order_by: [desc: t.inserted_at], preload: :categories, limit: 16)
     render(conn, "index.html",

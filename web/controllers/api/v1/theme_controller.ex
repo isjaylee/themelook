@@ -36,11 +36,11 @@ defmodule Themelook.Api.V1.ThemeController do
     query = put_in(query, [:query, :bool, :must], search_params)
     if params["search_themes"]["max"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :lte], params["search_themes"]["max"])
     if params["search_themes"]["min"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :gte], params["search_themes"]["min"])
-    category_ids = Enum.filter(params["categories"], fn({k,v}) -> v == "true" end) |> Enum.into(%{}) |> Map.keys
+    category_ids = Enum.filter(params["categories"], fn({_k,v}) -> v == "true" end) |> Enum.into(%{}) |> Map.keys
     if category_ids != [], do: query = put_in(query, [:query, :bool, :filter, :bool, :should], %{terms: %{categories: category_ids}})
     if params["search_themes"]["framework_id"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :must], %{terms: %{categories: [params["search_themes"]["framework_id"]]}})
 
-    {:ok, code, response} = post("/themelook/themes/_search", [], Poison.encode!(query))
+    {:ok, _code, response} = post("/themelook/themes/_search", [], Poison.encode!(query))
 
     theme_ids = response.hits.hits |> Enum.map(& &1[:_id])
     themes = get_themes_by_order(params["sort"], theme_ids, params["count"], offset)
