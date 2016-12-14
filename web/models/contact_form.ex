@@ -1,8 +1,6 @@
 defmodule ContactForm do
   use Ecto.Schema
-  import Ecto
   import Ecto.Changeset
-  import Ecto.Query
 
   schema "" do
     field :from,    :string, virtual: true

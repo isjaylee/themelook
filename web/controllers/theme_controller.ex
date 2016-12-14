@@ -32,7 +32,7 @@ defmodule Themelook.ThemeController do
         theme
         |> Repo.preload(:categories)
         |> Ecto.Changeset.change()
-        |> Ecto.Changeset.put_assoc(:categories, Enum.filter(conn.params["categories"], fn({k,v}) -> v == "true" end) |> Enum.map(fn({k,v}) -> Repo.get(Category, k) end))
+        |> Ecto.Changeset.put_assoc(:categories, Enum.filter(conn.params["categories"], fn({_k,v}) -> v == "true" end) |> Enum.map(fn({k,_v}) -> Repo.get(Category, k) end))
         |> Repo.update!
 
         theme_with_cats = theme |> Repo.preload(:categories)
@@ -44,7 +44,6 @@ defmodule Themelook.ThemeController do
         |> put_flash(:info, "Created successfully.")
         |> redirect(to: theme_path(conn, :show, theme))
       {:error, changeset} ->
-        conn
         render(conn, "new.html", changeset: changeset)
     end
   end
@@ -69,11 +68,11 @@ defmodule Themelook.ThemeController do
         theme
         |> Repo.preload(:categories)
         |> Ecto.Changeset.change()
-        |> Ecto.Changeset.put_assoc(:categories, Enum.filter(conn.params["categories"], fn({k,v}) -> v == "true" end) |> Enum.map(fn({k,v}) -> Repo.get(Category, k) end))
+        |> Ecto.Changeset.put_assoc(:categories, Enum.filter(conn.params["categories"], fn({_k,v}) -> v == "true" end) |> Enum.map(fn({k,_v}) -> Repo.get(Category, k) end))
         |> Repo.update!
 
         category_ids =
-          Enum.filter(conn.params["categories"], fn({k,v}) -> v == "true" end)
+          Enum.filter(conn.params["categories"], fn({_k,v}) -> v == "true" end)
           |> Enum.into(%{})
           |> Map.keys
           |> Enum.reduce([], fn(x, acc) -> acc ++ [String.to_integer(x)] end)
@@ -98,11 +97,11 @@ defmodule Themelook.ThemeController do
     query = put_in(query, [:query, :bool, :must], search_params)
     if params["search_themes"]["max"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :lte], params["search_themes"]["max"])
     if params["search_themes"]["min"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :filter, :range, :price, :gte], params["search_themes"]["min"])
-    category_ids = Enum.filter(params["categories"], fn({k,v}) -> v == "true" end) |> Enum.into(%{}) |> Map.keys
+    category_ids = Enum.filter(params["categories"], fn({_k,v}) -> v == "true" end) |> Enum.into(%{}) |> Map.keys
     if category_ids != [], do: query = put_in(query, [:query, :bool, :filter, :bool, :should], %{terms: %{categories: category_ids}})
     if params["search_themes"]["framework_id"] != "", do: query = put_in(query, [:query, :bool, :filter, :bool, :must], %{terms: %{categories: [params["search_themes"]["framework_id"]]}})
 
-    {:ok, code, response} = post("/themelook/themes/_search", [], Poison.encode!(query))
+    {:ok, _code, response} = post("/themelook/themes/_search", [], Poison.encode!(query))
 
     theme_ids = response.hits.hits |> Enum.map(& &1[:_id])
     themes = Repo.all(from t in Theme, where: t.id in ^theme_ids, order_by: [desc: t.inserted_at], preload: :categories, limit: 20)

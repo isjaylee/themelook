@@ -1,13 +1,13 @@
 defmodule Themelook.Application do
   import Plug.Conn
   import Ecto.Query
-  alias Themelook.{Repo, Category, Theme}
+  alias Themelook.{Repo, Category}
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)
   end
 
-  def call(conn, repo) do
+  def call(conn, _repo) do
     cat_query = from c in Category,
       where: not c.name in ["HTML", "Shopify", "Wordpress", "Opencart", "Prestashop", "WooCommerce", "Magento", "BigCommerce", "Tumblr"],
       order_by: c.name

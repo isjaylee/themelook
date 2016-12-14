@@ -1,6 +1,5 @@
 defmodule Themelook.ThemesCategories do
   use Themelook.Web, :model
-  alias Themelook.{Theme}
 
   schema "themes_categories" do
     field :theme_id, :integer
