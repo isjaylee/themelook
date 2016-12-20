@@ -18,6 +18,8 @@ defmodule Themelook.Api.V1.ThemeView do
       price: theme.price,
       categories: theme.categories,
       image: theme.image,
+      demo_link: theme.demo_link,
+      theme_link: theme.theme_link,
     }
   end
 end

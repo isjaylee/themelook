@@ -1206,17 +1206,17 @@ p.special-price {
 ===========================*/
 
 .single-product-hover {
-    background: none repeat scroll 0 0 #fff;
+    background: none repeat scroll 0 0 #DC9814;
     bottom: -100px;
-    left: 0px;
+    /* left: 0px; */
     position: absolute;
     width: 100%;
     opacity: 0;
     filter: alpha(opacity=0);
-    -webkit-transition: .5s;
-    transition: .5s;
-    padding: 7px 0px;
+    /* padding: 7px 0px; */
     cursor: default;
+    -webkit-transition: .2s;
+    transition: .2s;
 }
 
 .single-product-hover .available-size {
@@ -1238,20 +1238,18 @@ p.special-price {
 }
 
 .single-product-hover .single-product-links {
-    float: right;
-    padding-right: 7px;
-    width: 70%;
+    width: 100%;
 }
 
 .single-product-links .s-link {
     float: right;
 }
 
-.single-product-links .s-link a i {
+.single-product-links .s-link a {
     padding: 12px;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
-    font-size: 18px;
+    font-size: 12px;
 }
 
 .single-product-links .s-link a i:hover {
@@ -1358,7 +1356,19 @@ p.special-price {
     transform: scale(1, 1);
 }
 
+.btn-group a {
+  text-align: center;
+  color: #fff;
+}
 
+.btn-group a:hover {
+  background: #E2AB42;
+  color: #fff;
+}
+
+.btn-group a.btn {
+  border-right: 1px solid #eee;
+}
 /*========================= 
   Load more btn
 ===========================*/
