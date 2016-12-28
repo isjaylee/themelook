@@ -1,19 +1,16 @@
 <div class="footer">
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 text-left">
-          <div class="copyright">
-            <p>© <%= DateTime.utc_now |> Map.fetch!(:year) %> <a href="/"><span>Themelook</span></a>
+  <div class="footer__inner">
+    <div class="footer__bottom">
+      <div class="footer__bottom__content">
+        <div class="footer__bottom__left">
+          <div id="text-12" class="widget widget_text">
+            <div class="textwidget">© <%= DateTime.utc_now |> Map.fetch!(:year) %> All Rights Reserved. <a href="#">Themelook</a></div>
           </div>
         </div>
-        <div class="col-md-15 text-right">
-          <div class="footer-bottom-menu">
-            <ul>
-              <li><%= link "Privacy Policy", to: page_path(@conn, :privacy) %></li>
-              <li><%= link "Terms & Conditions", to: page_path(@conn, :terms) %></li>
-            </ul>
-          </div>
+        <div class="footer__bottom__right">
+          <a><%= link "Privacy Policy", to: page_path(@conn, :privacy), class: "footer__go-top" %></a>
+          <br>
+          <a><%= link "Terms & Conditions", to: page_path(@conn, :terms), class: "footer__go-top" %></a>
         </div>
       </div>
     </div>

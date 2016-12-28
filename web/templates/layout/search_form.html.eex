@@ -1,56 +1,43 @@
-<div class="breadcrumb-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-16 col-md-offset-2">
-        <%= form_for @conn, theme_path(@conn, :search_themes), [as: :search_themes, method: :get], fn f -> %>
-          <div class="row">
-            <div class="col-md-18">
-              <div class="form-group">
-                <label>Search</label>
-                <%= text_input f, :name, class: "form-control", placeholder: "Search", autofocus: true %>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-md-2">
-                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <%= submit raw("<i class='fa fa-search'></i>"), class: "btn btn-primary" %>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <label>Price <small>(set max to 0 for Free themes)</small></label>
-              <div class="form-group">
-                <label class="sr-only">Amount (in dollars)</label>
-                <div class="input-group">
-                  <%= text_input f, :min, class: "form-control", placeholder: "Min" %>
-                  <div class="input-group-addon">to</div>
-                  <%= text_input f, :max, class: "form-control", placeholder: "Max" %>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label>Framework</label>
-              <%= select f, :framework_id, @frameworks |> Enum.map(&{&1.name, &1.id}), [class: "form-control", prompt: "All"] %>
-            </div>
-            <div class="col-md-6">
-              <label>Publisher <small>(leave blank to search all)</small></label>
-              <%= text_input f, :publisher, class: "form-control", placeholder: "Publisher Name" %>
-              <%#= select f, :publisher, ["Elegant Themes", "DIYthemes", "Studio Press", "Themefuse"], [class: "form-control", prompt: "All"] %>
-            </div>
-          </div>
-          <label>Categories</label>
-          <div class="row">
-            <div class="form-group">
-              <%= for category <- @home_categories do %>
-                <div class="col-md-4">
-                  <%= checkbox :categories, "#{category.id}", [value: category.name, checked: active_checkbox(@conn, category.id)]  %> <%= category.name %>
-                </div>
-              <% end %>
-            </div>
+<div class="hero hero--animate">
+  <div class="hero__image" style="background: #3C3C3C;">
+    <div class="hero__image__overlay"></div>
+  </div>
+  <div class="hero__inner">
+    <div class="hero__content">
+      <%= form_for @conn, theme_path(@conn, :search_themes), [as: :search_themes, class: "login", method: :get], fn f -> %>
+        <p class="form-row form-row-wide">
+          <label>Search</label>
+          <%= text_input f, :name, class: "form-control", placeholder: "Search", autofocus: true %>
+        </p>
+        <p class="form-row form-row form-row-first" id="price_min">
+          <label>Price min</label>
+          <%= text_input f, :min, class: "form-control", placeholder: "Min" %>
+        </p>
+        <p class="form-row form-row form-row-first" id="price_max">
+          <label>Price max</label>
+          <%= text_input f, :max, class: "form-control", placeholder: "Max" %>
+        </p>
+        <p class="form-row form-row form-row-first" id="framework">
+          <label>Framework</label>
+          <br>
+          <%= select f, :framework_id, @frameworks |> Enum.map(&{&1.name, &1.id}), [class: "form-control", prompt: "All"] %>
+        </p>
+        <p class="form-row form-row form-row-first" id="publisher">
+          <label>Publisher</label>
+          <%= text_input f, :publisher, class: "form-control", placeholder: "Publisher Name" %>
+        </p>
+        <h4>Categories</h4>
+        <%= for category <- @home_categories do %>
+          <div class="col-1">
+            <label class="inline">
+              <%= checkbox :categories, "#{category.id}", [value: category.name, checked: active_checkbox(@conn, category.id)]  %> <%= category.name %>
+            </label>
           </div>
         <% end %>
-      </div>
+        <p class="form-row">
+          <%= submit "Search", class: "button" %>
+        </p>
+      <% end %>
     </div>
   </div>
 </div>

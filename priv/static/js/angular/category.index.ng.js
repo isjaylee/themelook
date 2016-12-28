@@ -49,7 +49,7 @@
           function success(response){
             vm.themes = vm.themes.concat(response);
 
-            if (response.length < 16) {
+            if (response.length < 20) {
               vm.showLoadMore = false;
             }
             setThemeFramework();

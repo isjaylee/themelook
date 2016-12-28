@@ -12,7 +12,7 @@ defmodule Themelook.ThemeController do
   def show(conn, %{"id" => id}) do
     theme = Repo.get!(Theme, id) |> Repo.preload(:categories)
     categories = Repo.all(Category)
-    render(conn, "show.html", theme: theme, categories: categories)
+    render(conn, "show.html", theme: theme, categories: categories, disable_search_form: true)
   end
 
   def new(conn, _params) do

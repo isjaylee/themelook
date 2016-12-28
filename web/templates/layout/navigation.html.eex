@@ -1,62 +1,40 @@
-<div class="header-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-20">
-        <!-- Main Menu start -->
-        <div class="main-menu-area megamenu-active">
-          <!-- Logo Start -->
-          <div class="col-md-4">
-            <div class="site-logo">
-              <h1><%= link "Themelook", to: category_path(@conn, :index) %></h1>
-            </div>
-          </div>
-          <!-- Logo Start -->
-          <div class="col-md-16 text-right">
-            <div class="mainmenu">
-              <div class="navbar-collapse collapse">
-                <ul id="nav" class="nav navbar-nav">
-                  <li><%= link "Home", to: category_path(@conn, :index) %></li>
-                  <li class="active megamenu-list dropdown-active">
-                    <a href="/">Categories <i class="fa fa-angle-down"></i></a>
-                    <ul class="sub-menu">
-                      <%= for category <- @home_categories do %>
-                        <li><%= link category.name, to: category_path(@conn, :show, category) %></li>
-                      <% end %>
-                    </ul>
-                  </li>
-                  <li class="active megamenu-list dropdown-active">
-                    <a>Frameworks <i class="fa fa-angle-down"></i></a>
-                    <ul class="sub-menu">
-                      <%= for framework <- @frameworks do %>
-                        <li><%= link framework.name, to: category_path(@conn, :show, framework) %></li>
-                      <% end %>
-                    </ul>
-                  </li>
-                  <li><%= link "About", to: page_path(@conn, :about) %></li>
-                  <li> <a href="http://blog.themelook.com">Blog</a> </li>
-                  <li><%= link "Submit a Theme", to: page_path(@conn, :submit_theme) %></li>
-                  <%= if @current_user && @current_user.role == "Admin" do %>
-                    <li>
-                      <%= link "Add Theme", to: theme_path(@conn, :new), class: "nav-link" %>
-                    </li>
-                    <li>
-                      <%= link "Manage Themes", to: theme_path(@conn, :index), class: "nav-link" %>
-                    </li>
-                    <li>
-                      <%= link "Logout", to: theme_path(@conn, :logout), class: "nav-link" %>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Main Menu End -->
+<div class="header sps sps--abv">
+  <div class="header__inner">
+    <div class="header__content">
+      <%= link "Themelook", to: category_path(@conn, :index), class: "header__logo" %>
+      <div class="menu-primary-container">
+        <ul id="menu-primary" class="header__nav header__nav--left">
+          <li><%= link "About", to: page_path(@conn, :about) %></li>
+          <li><a href="http://blog.themelook.com">Blog</a></li>
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+            <%= link "Categories", to: category_path(@conn, :index) %>
+            <ul class="sub-menu">
+              <%= for category <- @home_categories do %>
+                <li><%= link category.name, to: category_path(@conn, :show, category) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+            <a>Frameworks</a>
+            <ul class="sub-menu">
+              <%= for framework <- @frameworks do %>
+                <li><%= link framework.name, to: category_path(@conn, :show, framework) %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <!--/ col -->
+      <ul class="header__nav header__nav--right">
+        <!-- <li class="header__login"> -->
+        <!-- <a href="http://markethub-wordpress.wearecodevision.com/login/">Log In</a> -->
+        <!-- </li> -->
+        <li class="header__nav__btn header__nav__btn--primary header__register">
+          <%= link "Submit a Theme", to: page_path(@conn, :submit_theme) %>
+        </li>
+      </ul>
+      <!-- /.header__nav -->
     </div>
-    <!--/ row -->
+    <!-- /.header__content -->
   </div>
-  <!--/ container -->
+  <!-- /.header__inner -->
 </div>
-

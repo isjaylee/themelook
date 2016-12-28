@@ -27,7 +27,7 @@
       function loadMore(sortBy, category, offset) {
         return $http({
           method: 'GET',
-          url: _url(category) + `?sort=${sortBy}&offset=${offset}&count=16`
+          url: _url(category) + `?sort=${sortBy}&offset=${offset}&count=20`
         }).then(_success);
       }
 

@@ -1,79 +1,46 @@
-<div class="col-md-16">
-  <!-- product area-->
-  <div class="products-area">
-    <div class="row">
-      <div class="col-md-20">
-        <div class="toolbar">
-          <div class="view-mode">
-            <p>HOME / {{vm.category.name}}</p>
-          </div>
-          <div class="result-short pull-right">
-            <div class="dropdown">
-              <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                {{vm.sortBy}}
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                <li><a href="" data-ng-click="vm.sortThemes('Price - High to Low')">Price - High to Low</a></li>
-                <li><a href="" data-ng-click="vm.sortThemes('Price - Low to High')">Price - Low to High</a></li>
-                <li><a href="" data-ng-click="vm.sortThemes('Newest')">Newest</a></li>
-                <li><a href="" data-ng-click="vm.sortThemes('Oldest')">Oldest</a></li>
-              </ul>
-            </div>
+<div class="main">
+  <div class="main__inner">
+    <div class="sidebar__front-page">
+      <div id="text-8" class="widget widget_text">
+        <div class="woocommerce-order-information">
+          <nav class="woocommerce-breadcrumb">
+            <strong>
+              Home<span class="separator">/</span>{{vm.category.name}}
+            </strong>
+          </nav>
+          <div class="sort-options">
+            <a href="" data-ng-click="vm.sortThemes('Newest')" data-ng-class="{'bold' : vm.sortBy === 'Newest'}">Newest</a>
+            <a href="" data-ng-click="vm.sortThemes('Oldest')" data-ng-class="{'bold' : vm.sortBy === 'Oldest'}">Oldest</a>
+            <a href="" data-ng-click="vm.sortThemes('Price - High to Low')" data-ng-class="{'bold' : vm.sortBy === 'Price - High to Low'}">Price High to Low</a>
+            <a href="" data-ng-click="vm.sortThemes('Price - Low to High')" data-ng-class="{'bold' : vm.sortBy === 'Price - Low to High'}">Price Low to High</a>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-5" data-ng-repeat="theme in vm.themes">
-        <!-- Single Item  -->
-        <div class="single-item">
-          <div class="single-product fix">
-            <div class="s-product-img">
-              <a href="/themes/{{theme.id}}" target="_blank"><img data-ng-src="{{theme.image}}" alt="{{vm.theme.name}} theme image"></a>
-              <div class="single-product-hover">
-                <div class="single-product-links">
-                  <div class="btn-toolbar">
-                    <div class="btn-group btn-group-md btn-group-justified btn-group-fill-height">
-                      <a href="{{theme.demo_link}}" target="_blank" class="btn">View Demo</a>
-                      <a href="{{theme.theme_link}}" target="_blank" class="btn">Get Theme</a>
-                    </div>
-                  </div>
+        <div class="textwidget">
+          <div class="woocommerce columns-5">
+            <ul class="products">
+              <li class="product" data-ng-repeat="theme in vm.themes">
+                <div class="product__image" style="background-image: url('{{theme.image}}');">
+                  <a href="{{theme.demo_link}}" target="_blank" class="product__image__link"><i class="lnr lnr-eye"></i></a>
+                  <a href="{{theme.theme_link}}" target="_blank" class="product__image__cart"><i class="lnr lnr-cart"></i></a>
                 </div>
-              </div>
-            </div>
-            <!-- Single product Title-->
-            <div class="product-title">
-              <a href="/themes/{{theme.id}}" target="_blank">{{theme.name}}</a>
-            </div>
-            <small>{{theme.publisher}}</small>
-            <span class="special">{{theme.framework}}</span>
-            <!-- Product price -->
-            <div class="price-box">
-              <p class="special-price"><span class="price">{{vm.formatPrice(theme.price)}}</span></p>
-            </div>
-            <!--/ Product price -->
+                <div class="product__category">
+                  {{theme.framework}}
+                </div>
+                <h3><a href="/themes/{{theme.id}}">{{theme.name}}</a></h3>
+                <span class="price"><span class="amount">{{vm.formatPrice(theme.price)}}</span></span>
+                <small class="wcvendors_sold_by_in_loop">
+                  by {{theme.publisher}}
+                </small>
+                <br>
+              </li>
+            </ul>
           </div>
         </div>
-        <!-- Single Item -->
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-20">
-        <div class="pagination-area">
-          <div class="paginations">
-            <div class="row">
-              <div class="col-md-20 text-center">
-                <a href="" data-ng-click="vm.loadMore(vm.themes.length)" data-ng-if="vm.showLoadMore">Load More</a>
-                <span data-ng-if="!vm.showLoadMore">No more themes</span>
-              </div>
-            </div>
-          </div>
+        <div style="text-align: center;">
+          <a href="" class="hero__btn" data-ng-click="vm.loadMore(vm.themes.length)" data-ng-if="vm.showLoadMore">Load More</a>
+          <input class="no-more-themes" data-ng-if="!vm.showLoadMore" type="submit" value="No more themes" disabled>
         </div>
       </div>
     </div>
-    <!--Pagination End-->
   </div>
-  <!--/ product area-->
-</div>
 </div>

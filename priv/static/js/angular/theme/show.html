@@ -1,66 +1,38 @@
-<div class="col-md-16">
-  <!-- product area-->
-  <div class="products-area">
-    <!-- Single Product -->
-    <div class="row">
-      <div class="product-list-col">
-        <div class="col-lg-10">
-          <!-- Tab panes -->
-          <div class="tab-content single-product-big-img">
-            <div role="tabpanel" class="tab-pane active" id="one">
-              <div class="s-product-img">
-                <img data-ng-src="{{vm.theme.image}}" alt="{{vm.theme.name}} theme image">
-              </div>
-            </div>
-          </div>
+<div class="main">
+  <div class="main__inner">
+    <!-- /.content-title -->
+    <div id="container">
+      <div id="content" role="main">
+        <div class="images">
+          <a href="" class="woocommerce-main-image zoom">
+            <img width="600" height="600" src="{{vm.theme.image}}" class="attachment-shop_single size-shop_single wp-post-image">
+          </a>
         </div>
-        <div class="col-md-10">
-          <div class="product-details-list">
-            <div class="product-title-star">
-              <h4>{{vm.theme.name}}</h4>
-              <p>by {{vm.theme.publisher}}</p>
-              <div class="price-box">
-                <p class="special-price"><span class="price">{{vm.formatPrice(vm.theme.price)}}</span></p>
-              </div>
-              <a data-ng-href="{{vm.theme.demo_link}}" target="_blank" class="btn btn-primary btn-sm">View Demo</a>
-              <a data-ng-href="{{vm.theme.theme_link}}" target="_blank" class="btn btn-primary btn-sm">Get Theme</a>
-              <hr>
-              <p data-ng-bind-html="vm.theme.description|formatHtml"></p>
-            </div>
+        <div class="summary entry-summary">
+          <h1 class="product_title entry-title">{{vm.theme.name}}</h1>
+          <p>by {{vm.theme.publisher}}</p>
+          <br>
+          <button class="demo button alt">Demo</button>
+          <button class="wishlist button alt">Get Theme</button>
+          <hr>
+          <div class="description">
+            <p>{{vm.theme.description}}</p>
           </div>
         </div>
       </div>
     </div>
-    <!-- Single Product -->
-    <!-- Product Review tabs -->
-    <div class="row">
-      <div class="col-lg-20">
-        <div class="details">
-          <div class="product-menu">
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#tags">Categories</a></li>
-            </ul>
-          </div>
+    <div id="secondary" class="secondary sidebar">
+      <div class="product-info">
+        <div class="product-info__section product-info__section--price">
+          <span class="price"><span class="amount">{{vm.formatPrice(vm.theme.price)}}</span>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-20">
-        <div class="product-list tab-content">
-          <div id="tags" class="tab-pane fade in active">
-            <p class="tagcloud">
-              <a href="/categories/{{category.id}}" data-ng-repeat="category in vm.theme.categories">{{category.name}}</a>
-            </p>
-          </div>
+        <div class="product-info__section product-info__section--tags">
+          <h2>Categories</h2>
+          <a href="/categories/{{category.id}}" data-ng-repeat="category in vm.theme.categories">{{category.name}}{{$last ? '' : ', '}}</a>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-20">
-        <div class="details">
-          <div class="product-menu">
-            <p>Theme doesn't work? Info needs to be updated? <a href="mailto:themelooksite@gmail.com?subject=About%20{{vm.theme.name}}%20theme%20on%20Themelook.com" class="btn btn-info btn-sm">Let us know!</a></p>
-          </div>
+        <div class="product-info__section">
+          <h2>Theme Info Wrong?</h2>
+          <button href="mailto:themelooksite@gmail.com?subject=About%20{{vm.theme.name}}%20theme%20on%20Themelook.com" class="danger">Let us know!</button>
         </div>
       </div>
     </div>
