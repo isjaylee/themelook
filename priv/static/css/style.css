@@ -4267,6 +4267,7 @@ button.danger {
     color: rgba(66, 66, 66, 0.7);
     font-size: 18px;
     margin: 0 0 50px 0;
+    overflow: hidden;
 }
 
 .description p {

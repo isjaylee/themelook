@@ -12,11 +12,15 @@
           <h1 class="product_title entry-title">{{vm.theme.name}}</h1>
           <p>by {{vm.theme.publisher}}</p>
           <br>
-          <button class="demo button alt">Demo</button>
-          <button class="wishlist button alt">Get Theme</button>
+          <a href="{{vm.theme.demo_link}}" target="blank">
+            <button class="demo button alt">Demo</button>
+          </a>
+          <a href="{{vm.theme.theme_link}}" target="blank">
+            <button class="wishlist button alt">Get Theme</button>
+          </a>
           <hr>
           <div class="description">
-            <p>{{vm.theme.description}}</p>
+            <p data-ng-bind-html="vm.theme.description|formatHtml"></p>
           </div>
         </div>
       </div>
@@ -32,7 +36,9 @@
         </div>
         <div class="product-info__section">
           <h2>Theme Info Wrong?</h2>
-          <button href="mailto:themelooksite@gmail.com?subject=About%20{{vm.theme.name}}%20theme%20on%20Themelook.com" class="danger">Let us know!</button>
+          <a href="mailto:themelooksite@gmail.com?subject=About%20{{vm.theme.name}}%20theme%20on%20Themelook.com">
+            <button class="danger">Let us know!</button>
+          </a>
         </div>
       </div>
     </div>
