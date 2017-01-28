@@ -1,10 +1,22 @@
-<div class="col-lg-20">
-  <div class="page-header">
-    <h1>Add a theme</h1>
+<div class="main">
+  <div class="main__inner">
+    <div class="content-title">
+      <div class="content-title__inner">
+        <h1>Create a new theme</h1>
+      </div>
+    </div>
+    <div id="single-page">
+      <div id="primary">
+        <div class="post">
+          <div class="post-body">
+            <%= render "form.html", changeset: @changeset,
+                        action: theme_path(@conn, :create),
+                        conn: @conn,
+                        categories: @categories %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= render "form.html", changeset: @changeset,
-                          action: theme_path(@conn, :create),
-                          conn: @conn,
-                          categories: @categories %>
 </div>
 

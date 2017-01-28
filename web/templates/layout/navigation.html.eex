@@ -25,16 +25,25 @@
         </ul>
       </div>
       <ul class="header__nav header__nav--right">
-        <!-- <li class="header__login"> -->
-        <!-- <a href="http://markethub-wordpress.wearecodevision.com/login/">Log In</a> -->
-        <!-- </li> -->
+          <%= if Coherence.current_user(@conn) do %>
+            <li class="header__login">
+              <%= link "All themes", to: theme_path(@conn, :index) %>
+            </li>
+            <li class="header__login">
+              <%= link "Add new theme", to: theme_path(@conn, :new) %>
+            </li>
+            <li class="header__login" style="margin-top: -12px;">
+              <%= button "Logout", to: session_path(@conn, :delete), method: :delete, class: "delete-link" %>
+            </li>
+          <% else %>
+            <li class="header__login">
+              <%= link "Login", to: session_path(@conn, :new) %>
+            </li>
+          <% end %>
         <li class="header__nav__btn header__nav__btn--primary header__register">
           <%= link "Submit a Theme", to: page_path(@conn, :submit_theme) %>
         </li>
       </ul>
-      <!-- /.header__nav -->
     </div>
-    <!-- /.header__content -->
   </div>
-  <!-- /.header__inner -->
 </div>

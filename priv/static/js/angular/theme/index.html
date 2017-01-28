@@ -1,28 +1,40 @@
-<div class="container">
-  <a href="/themes/new" class="btn btn-primary">Add a Theme</a>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead class="thead-inverse">
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Publisher</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-ng-repeat="theme in vm.themes">
-          <td>{{theme.id}}</td>
-          <td><a href="/themes/{{theme.id}}">{{theme.name}}</a></td>
-          <td>{{theme.publisher}}</td>
-          <td>{{theme.price}}</td>
-          <td>
-            <a href="/themes/{{theme.id}}/edit">Edit</a>
-            <a href="">Delete</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="main">
+  <div class="main__inner">
+    <div class="content-title">
+      <div class="content-title__inner">
+        <h1>Create a new theme</h1>
+      </div>
+    </div>
+    <div id="single-page">
+      <div id="primary">
+        <div class="post">
+          <div class="post-body">
+            <table class="table table-striped">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Publisher</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-ng-repeat="theme in vm.themes">
+                  <td>{{theme.id}}</td>
+                  <td><a href="/themes/{{theme.id}}">{{theme.name}}</a></td>
+                  <td>{{theme.publisher}}</td>
+                  <td>{{theme.price}}</td>
+                  <td>
+                    <a href="/themes/{{theme.id}}/edit">Edit</a>
+                    <a href="">Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

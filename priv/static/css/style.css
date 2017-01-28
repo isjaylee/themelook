@@ -6006,3 +6006,15 @@ center + hr {
     color: rgba(66, 66, 66, 0.7);
     text-decoration: underline;
 }
+
+.delete-link {
+    background: none;
+    border: none;
+    display: inline;
+    font: inherit;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+}
